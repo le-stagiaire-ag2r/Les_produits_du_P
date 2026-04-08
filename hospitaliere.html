@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garantie Hospitalière Premier Jour | AG2R LA MONDIALE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #FFA726;
+            --primary-red: #FF7043;
+            --dark-bg: #0a0e27;
+            --gradient-hosp: linear-gradient(135deg, #FFA726 0%, #FF7043 100%);
+            --gradient-hosp-soft: linear-gradient(135deg, rgba(255,167,38,0.15) 0%, rgba(255,112,67,0.15) 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a1208, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            background: rgba(255, 167, 38, 0.07);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .bg-animation span:nth-child(7) {
+            left: 5%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 6s;
+            animation-duration: 22s;
+        }
+
+        .bg-animation span:nth-child(8) {
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            animation-delay: 9s;
+            animation-duration: 16s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 167, 38, 0.5);
+            cursor: pointer;
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-hosp);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 20px 90px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--gradient-hosp-soft);
+            border: 1px solid rgba(255,167,38,0.4);
+            border-radius: 30px;
+            font-size: 0.95em;
+            color: #FFA726;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            background: var(--gradient-hosp);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            line-height: 1.15;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 50px 20px;
+            background: rgba(0,0,0,0.35);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,167,38,0.3);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,167,38,0.6);
+            box-shadow: 0 12px 30px rgba(255,167,38,0.2);
+        }
+
+        .stat-value {
+            font-size: 1.7em;
+            font-weight: 800;
+            background: var(--gradient-hosp);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-hosp);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
+        }
+
+        /* Niveaux de couverture */
+        .niveaux {
+            padding: 80px 20px;
+        }
+
+        .niveaux-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .niveau-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 38px 28px;
+            border-radius: 22px;
+            border: 1px solid rgba(255,167,38,0.25);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .niveau-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-hosp);
+        }
+
+        .niveau-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,167,38,0.55);
+            box-shadow: 0 20px 50px rgba(255,167,38,0.2);
+        }
+
+        .niveau-label {
+            display: inline-block;
+            padding: 5px 16px;
+            background: var(--gradient-hosp);
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 22px;
+            letter-spacing: 0.04em;
+        }
+
+        .niveau-indemnite {
+            font-size: 2.6em;
+            font-weight: 800;
+            background: var(--gradient-hosp);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+            line-height: 1;
+        }
+
+        .niveau-unit {
+            font-size: 1em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+        }
+
+        .niveau-separator {
+            width: 40px;
+            height: 2px;
+            background: var(--gradient-hosp);
+            margin: 0 auto 20px;
+            border-radius: 2px;
+        }
+
+        .niveau-chir {
+            font-size: 1.55em;
+            font-weight: 700;
+            color: #FFA726;
+            margin-bottom: 4px;
+        }
+
+        .niveau-chir-label {
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Pourquoi section */
+        .pourquoi {
+            padding: 80px 20px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .pourquoi-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pourquoi-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,112,67,0.3);
+            transition: all 0.3s;
+        }
+
+        .pourquoi-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,112,67,0.6);
+            box-shadow: 0 15px 40px rgba(255,112,67,0.2);
+        }
+
+        .pourquoi-icon {
+            font-size: 2.4em;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .pourquoi-title {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #FF7043;
+            margin-bottom: 12px;
+        }
+
+        .pourquoi-text {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+        }
+
+        .pourquoi-highlight {
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: rgba(255,112,67,0.1);
+            border-radius: 10px;
+            border-left: 3px solid #FF7043;
+            font-size: 0.92em;
+            color: rgba(255,255,255,0.85);
+            font-style: italic;
+        }
+
+        /* VIASSISTANCE section */
+        .viassistance {
+            padding: 80px 20px;
+        }
+
+        .viassistance-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .viassistance-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .viassistance-badge {
+            display: inline-block;
+            padding: 10px 30px;
+            background: var(--gradient-hosp);
+            border-radius: 30px;
+            font-size: 1.3em;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            letter-spacing: 0.08em;
+        }
+
+        .viassistance-sub {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.05em;
+        }
+
+        .via-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .via-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 26px 22px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,167,38,0.25);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .via-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,167,38,0.5);
+            box-shadow: 0 12px 30px rgba(255,167,38,0.15);
+        }
+
+        .via-icon {
+            font-size: 2.2em;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .via-title {
+            font-size: 1em;
+            font-weight: 700;
+            color: #FFA726;
+            margin-bottom: 8px;
+        }
+
+        .via-desc {
+            font-size: 0.88em;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.5;
+        }
+
+        /* Comparison note box */
+        .info-box {
+            max-width: 860px;
+            margin: 50px auto 0;
+            padding: 30px 35px;
+            background: var(--gradient-hosp-soft);
+            border: 1px solid rgba(255,167,38,0.35);
+            border-radius: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .info-box-icon {
+            font-size: 2em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .info-box-content h3 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #FFA726;
+            margin-bottom: 8px;
+        }
+
+        .info-box-content p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--gradient-hosp);
+            position: relative;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .cta > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.95);
+            font-size: 1em;
+            font-weight: 500;
+        }
+
+        .cta-feature span:first-child {
+            font-size: 1.3em;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 44px;
+            background: white;
+            color: #FF7043;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #FF7043;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0,0,0,0.55);
+            text-align: center;
+            border-top: 1px solid rgba(255,167,38,0.25);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.75);
+        }
+
+        footer .legal {
+            font-size: 0.85em;
+            margin-top: 12px;
+            opacity: 0.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4em; }
+            .hero .subtitle { font-size: 1.4em; }
+            .niveaux-grid { grid-template-columns: repeat(2, 1fr); }
+            .pourquoi-content { grid-template-columns: 1fr; }
+            .info-box { flex-direction: column; gap: 12px; }
+            .cta h2 { font-size: 1.8em; }
+        }
+
+        @media (max-width: 480px) {
+            .niveaux-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="prevoyance.html" class="back-btn">
+                    <span>&#8592;</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Prévoyance Hospitalière</div>
+        <h1>Garantie Hospitalière Premier Jour</h1>
+        <div class="subtitle">Indemnisé dès la 1<sup>ère</sup> nuit</div>
+        <p>Complétez votre Sécurité Sociale et votre mutuelle : percevez des indemnités journalières dès le premier jour d'hospitalisation pour couvrir les frais non pris en charge et maintenir votre niveau de vie.</p>
+    </section>
+
+    <!-- Key Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">Dès 1&#8239;€/mois</div>
+                <div class="stat-label">Cotisation mensuelle</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Dès le 1er jour</div>
+                <div class="stat-label">Indemnités versées</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">4 niveaux</div>
+                <div class="stat-label">De garantie disponibles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">VIASSISTANCE</div>
+                <div class="stat-label">Incluse avec la garantie</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 Niveaux de couverture -->
+    <section class="niveaux">
+        <div class="section-title">
+            <h2>4 niveaux de couverture</h2>
+            <p>Adaptez votre protection à votre budget et à vos besoins</p>
+        </div>
+
+        <div class="niveaux-grid">
+            <div class="niveau-card">
+                <div class="niveau-label">Niveau 1</div>
+                <div class="niveau-indemnite">17&#8239;€</div>
+                <div class="niveau-unit">par jour d'hospitalisation</div>
+                <div class="niveau-separator"></div>
+                <div class="niveau-chir">46&#8239;€</div>
+                <div class="niveau-chir-label">Chirurgical / Obstétrical</div>
+            </div>
+
+            <div class="niveau-card">
+                <div class="niveau-label">Niveau 2</div>
+                <div class="niveau-indemnite">23&#8239;€</div>
+                <div class="niveau-unit">par jour d'hospitalisation</div>
+                <div class="niveau-separator"></div>
+                <div class="niveau-chir">66&#8239;€</div>
+                <div class="niveau-chir-label">Chirurgical / Obstétrical</div>
+            </div>
+
+            <div class="niveau-card">
+                <div class="niveau-label">Niveau 3</div>
+                <div class="niveau-indemnite">34&#8239;€</div>
+                <div class="niveau-unit">par jour d'hospitalisation</div>
+                <div class="niveau-separator"></div>
+                <div class="niveau-chir">114&#8239;€</div>
+                <div class="niveau-chir-label">Chirurgical / Obstétrical</div>
+            </div>
+
+            <div class="niveau-card">
+                <div class="niveau-label">Niveau 4</div>
+                <div class="niveau-indemnite">47&#8239;€</div>
+                <div class="niveau-unit">par jour d'hospitalisation</div>
+                <div class="niveau-separator"></div>
+                <div class="niveau-chir">206&#8239;€</div>
+                <div class="niveau-chir-label">Chirurgical / Obstétrical</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi Premier Jour ? -->
+    <section class="pourquoi">
+        <div class="section-title">
+            <h2>Pourquoi Premier Jour&nbsp;?</h2>
+            <p>Parce que l'hospitalisation a un coût bien réel dès la première nuit</p>
+        </div>
+
+        <div class="pourquoi-content">
+            <div class="pourquoi-card">
+                <span class="pourquoi-icon">🏥</span>
+                <div class="pourquoi-title">Les frais non couverts par la Sécu</div>
+                <p class="pourquoi-text">La Sécurité Sociale rembourse une partie des frais d'hospitalisation, mais de nombreux postes restent à votre charge : forfait journalier, franchise, dépassements d'honoraires, chambre individuelle...</p>
+                <div class="pourquoi-highlight">Chaque jour passé à l'hôpital peut représenter entre 20 et 80&#8239;€ de reste à charge.</div>
+            </div>
+
+            <div class="pourquoi-card">
+                <span class="pourquoi-icon">🔗</span>
+                <div class="pourquoi-title">Le complément idéal de votre mutuelle</div>
+                <p class="pourquoi-text">Votre complémentaire santé rembourse les soins, mais ne compense pas la perte de revenus liée à l'hospitalisation. La Garantie Hospitalière Premier Jour verse une indemnité en espèces, libre d'emploi.</p>
+                <div class="pourquoi-highlight">Utilisez librement l'indemnité : loyer, garde d'enfants, courses... aucune justification requise.</div>
+            </div>
+
+            <div class="pourquoi-card">
+                <span class="pourquoi-icon">📅</span>
+                <div class="pourquoi-title">Dès le premier jour, sans carence</div>
+                <p class="pourquoi-text">Contrairement à de nombreuses garanties hospitalières qui appliquent une franchise de 3 ou 7 jours, la Garantie Premier Jour indemnise dès la première nuit passée en établissement de soins.</p>
+                <div class="pourquoi-highlight">Couvre aussi bien les hospitalisations programmées qu'urgentes, en médecine, chirurgie ou obstétrique.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIASSISTANCE incluse -->
+    <section class="viassistance">
+        <div class="viassistance-wrapper">
+            <div class="viassistance-header">
+                <div class="viassistance-badge">VIASSISTANCE</div>
+                <p class="viassistance-sub">Un ensemble de services d'assistance inclus avec votre garantie, pour vous accompagner avant, pendant et après votre hospitalisation.</p>
+            </div>
+
+            <div class="via-grid">
+                <div class="via-item">
+                    <span class="via-icon">🚑</span>
+                    <div class="via-title">Transport médical</div>
+                    <div class="via-desc">Organisation et prise en charge du transport vers l'établissement de soins si nécessaire.</div>
+                </div>
+
+                <div class="via-item">
+                    <span class="via-icon">👶</span>
+                    <div class="via-title">Garde d'enfants</div>
+                    <div class="via-desc">Mise en place d'une garde à domicile pour vos enfants pendant votre séjour hospitalier.</div>
+                </div>
+
+                <div class="via-item">
+                    <span class="via-icon">🏠</span>
+                    <div class="via-title">Aide à domicile</div>
+                    <div class="via-desc">Assistance pour les tâches du quotidien à votre retour chez vous après hospitalisation.</div>
+                </div>
+
+                <div class="via-item">
+                    <span class="via-icon">🐾</span>
+                    <div class="via-title">Garde d'animaux</div>
+                    <div class="via-desc">Prise en charge de la garde de vos animaux de compagnie pendant votre hospitalisation.</div>
+                </div>
+
+                <div class="via-item">
+                    <span class="via-icon">📞</span>
+                    <div class="via-title">Assistance téléphonique</div>
+                    <div class="via-desc">Une ligne d'assistance disponible 24h/24 pour répondre à toutes vos questions et démarches.</div>
+                </div>
+
+                <div class="via-item">
+                    <span class="via-icon">🔧</span>
+                    <div class="via-title">Dépannage domicile</div>
+                    <div class="via-desc">Intervention d'urgence pour la plomberie, l'électricité ou la serrurerie si vous êtes seul(e).</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <span class="info-box-icon">ℹ️</span>
+                <div class="info-box-content">
+                    <h3>VIASSISTANCE : une valeur ajoutée concrète</h3>
+                    <p>Les services VIASSISTANCE sont activables sur simple appel téléphonique, sans avance de frais dans la limite des plafonds prévus au contrat. Ils s'appliquent aussi bien en cas d'hospitalisation planifiée qu'en urgence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Protégez-vous dès aujourd'hui</h2>
+        <p>Un devis rapide, une souscription simple. Choisissez votre niveau de couverture en quelques minutes.</p>
+        <div class="cta-features">
+            <div class="cta-feature">
+                <span>✓</span>
+                <span>Sans questionnaire médical</span>
+            </div>
+            <div class="cta-feature">
+                <span>✓</span>
+                <span>Résiliation à tout moment</span>
+            </div>
+            <div class="cta-feature">
+                <span>✓</span>
+                <span>VIASSISTANCE incluse</span>
+            </div>
+        </div>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button">Souscrire en ligne</a>
+            <a href="#" class="cta-button secondary">Être rappelé</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AG2R LA MONDIALE &mdash; Tous droits réservés</p>
+        <p class="legal">
+            La Garantie Hospitalière Premier Jour est un contrat collectif à adhésion individuelle souscrit auprès d'AG2R Prévoyance, institution de prévoyance régie par le livre IX du Code de la Sécurité Sociale, membre du groupe AG2R LA MONDIALE. Les garanties, exclusions, conditions et tarifs sont définis dans la notice d'information remise lors de l'adhésion. VIASSISTANCE est assurée par une société tierce partenaire. Tarifs indicatifs, non contractuels.
+        </p>
+    </footer>
+
+    <script>
+        // Scroll-triggered fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.niveau-card, .pourquoi-card, .stat-item, .via-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

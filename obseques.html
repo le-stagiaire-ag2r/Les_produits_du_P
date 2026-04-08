@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garanties Obsèques - Prima Capital &amp; Prima Volontés | AG2R LA MONDIALE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent-teal: #4CA1AF;
+            --accent-gold: #F0C040;
+            --accent-light: #7ecdd6;
+            --dark-bg: #0a0e27;
+            --gradient-obs: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
+            --gradient-gold: linear-gradient(135deg, #F0C040 0%, #e8a800 100%);
+            --gradient-teal-light: linear-gradient(135deg, #4CA1AF 0%, #7ecdd6 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #0d1f2d, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            background: rgba(76, 161, 175, 0.08);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+            border-radius: 4px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+            background: rgba(240, 192, 64, 0.07);
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+            background: rgba(240, 192, 64, 0.05);
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(76, 161, 175, 0.5);
+            cursor: pointer;
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-obs);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            background: var(--gradient-obs);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .label-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(240,192,64,0.15), rgba(240,192,64,0.05));
+            border: 1px solid rgba(240, 192, 64, 0.5);
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-size: 1em;
+            color: #F0C040;
+            font-weight: 600;
+            margin-top: 10px;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .label-badge::before {
+            content: "★";
+            font-size: 1.2em;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(76, 161, 175, 0.2);
+            border-bottom: 1px solid rgba(76, 161, 175, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            background: var(--gradient-teal-light);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.95em;
+        }
+
+        /* Two Solutions Section */
+        .solutions {
+            padding: 90px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-obs);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(76, 161, 175, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-obs);
+        }
+
+        .solution-card.gold::before {
+            background: var(--gradient-gold);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(76, 161, 175, 0.6);
+            box-shadow: 0 20px 50px rgba(76, 161, 175, 0.2);
+        }
+
+        .solution-icon {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .solution-name {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #4CA1AF;
+            margin-bottom: 5px;
+        }
+
+        .solution-card.gold .solution-name {
+            color: #F0C040;
+        }
+
+        .solution-tagline {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95em;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .solution-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .solution-list li {
+            padding: 9px 0;
+            color: rgba(255,255,255,0.85);
+            padding-left: 28px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95em;
+        }
+
+        .solution-list li:last-child {
+            border-bottom: none;
+        }
+
+        .solution-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CA1AF;
+            font-weight: bold;
+        }
+
+        .solution-card.gold .solution-list li::before {
+            color: #F0C040;
+        }
+
+        /* Formules Tableau */
+        .formules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .formules-table th {
+            background: rgba(240,192,64,0.15);
+            color: #F0C040;
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(240,192,64,0.3);
+        }
+
+        .formules-table td {
+            padding: 9px 12px;
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            vertical-align: top;
+        }
+
+        .formules-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .formule-price {
+            color: #F0C040;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .label-mini {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(240,192,64,0.12);
+            border: 1px solid rgba(240,192,64,0.35);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.78em;
+            color: #F0C040;
+            margin-top: 18px;
+        }
+
+        /* Assistance Section */
+        .assistance {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .assistance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .assist-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 28px 24px;
+            border-radius: 18px;
+            border: 1px solid rgba(76, 161, 175, 0.25);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .assist-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 161, 175, 0.5);
+            box-shadow: 0 12px 30px rgba(76, 161, 175, 0.15);
+        }
+
+        .assist-icon {
+            font-size: 2.2em;
+            margin-bottom: 12px;
+        }
+
+        .assist-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #7ecdd6;
+            margin-bottom: 8px;
+        }
+
+        .assist-text {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.88em;
+        }
+
+        /* Le Choix Funéraire Section */
+        .choix-funeraire {
+            padding: 80px 20px;
+        }
+
+        .timeline-wrapper {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 35px 28px;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 192, 64, 0.25);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(240, 192, 64, 0.5);
+            box-shadow: 0 15px 35px rgba(240, 192, 64, 0.12);
+        }
+
+        .timeline-phase {
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #F0C040;
+            margin-bottom: 8px;
+        }
+
+        .timeline-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+
+        .timeline-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 12px;
+        }
+
+        .timeline-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .timeline-list li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.88em;
+        }
+
+        .timeline-list li::before {
+            content: "·";
+            position: absolute;
+            left: 6px;
+            color: #F0C040;
+            font-size: 1.4em;
+            line-height: 1;
+            top: 4px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--gradient-obs);
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 35px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 45px;
+            background: white;
+            color: #2C3E50;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.15em;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-note {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.75);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-top: 1px solid rgba(76, 161, 175, 0.3);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 8px;
+        }
+
+        footer .legal {
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.45);
+            max-width: 900px;
+            margin: 12px auto 0;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .timeline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.4em;
+            }
+            .hero .subtitle {
+                font-size: 1.4em;
+            }
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            .assistance-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .assistance-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="prevoyance.html" class="back-btn">
+                    <span>←</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Garanties Obsèques</h1>
+        <div class="subtitle">Franchir le cap en toute sérénité</div>
+        <p>
+            Libérez vos proches des contraintes administratives et financières liées à l'organisation des obsèques.
+            Anticipez avec sérénité pour leur offrir un dernier hommage conforme à vos volontés.
+        </p>
+        <span class="label-badge">Label Excellence 2024 — 10e année consécutive</span>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">2 500€ – 4 500€</span>
+                <span class="stat-label">Coût moyen des obsèques en France</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">45%</span>
+                <span class="stat-label">des personnes préparent leurs obsèques à l'avance</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">658 200</span>
+                <span class="stat-label">décès par an en France</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two Solutions Section -->
+    <section class="solutions">
+        <div class="section-title">
+            <h2>Deux solutions complémentaires</h2>
+            <p>Prima Capital Obsèques+ et Prima Volontés Obsèques+ pour une protection complète</p>
+        </div>
+
+        <div class="solutions-grid">
+            <!-- Prima Capital -->
+            <div class="solution-card">
+                <span class="solution-icon">💎</span>
+                <div class="solution-name">Prima Capital Obsèques+</div>
+                <div class="solution-tagline">Le capital pour financer sereinement vos obsèques</div>
+
+                <ul class="solution-list">
+                    <li>Capital de <strong>1 000€ à 18 400€</strong> selon vos besoins</li>
+                    <li>Souscription jusqu'à <strong>85 ans</strong> sans formalité médicale</li>
+                    <li>Prime unique, temporaires 5 à 15 ans, ou viagères</li>
+                    <li><strong>Capital garanti à vie</strong></li>
+                    <li>Couverture décès accidentel <strong>immédiate</strong>, toutes causes dès le 7e mois</li>
+                    <li>Fiscalité assurance vie : capital <strong>non imposable</strong>, exonéré de droits de succession</li>
+                </ul>
+
+                <div class="label-mini">★ Label Excellence 2024</div>
+            </div>
+
+            <!-- Prima Volontés -->
+            <div class="solution-card gold">
+                <span class="solution-icon">🕊️</span>
+                <div class="solution-name">Prima Volontés Obsèques+</div>
+                <div class="solution-tagline">L'organisation complète de vos obsèques selon vos volontés</div>
+
+                <ul class="solution-list">
+                    <li>Organisation <strong>complète des obsèques</strong> selon vos souhaits</li>
+                    <li>Partenaire exclusif <strong>Le Choix Funéraire</strong> (UDIFE)</li>
+                    <li>Réseau national de pompes funèbres de qualité</li>
+                </ul>
+
+                <table class="formules-table">
+                    <thead>
+                        <tr>
+                            <th>Formule</th>
+                            <th>Tarif</th>
+                            <th>Inclus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Initiale</strong></td>
+                            <td class="formule-price">3 400€</td>
+                            <td>Préparation, transport, cercueil, inhumation / crémation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sérénité</strong></td>
+                            <td class="formule-price">4 100€</td>
+                            <td>Prestations supérieures + salon privatif 48h</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Prestige</strong></td>
+                            <td class="formule-price">5 900€</td>
+                            <td>Haut de gamme + participation caveau et monument</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="label-mini">★ Label Excellence 2024</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assistance Section -->
+    <section class="assistance">
+        <div class="section-title">
+            <h2>Assistance complète incluse</h2>
+            <p>Des services pour vous et vos proches, disponibles 24h/24</p>
+        </div>
+
+        <div class="assistance-grid">
+            <div class="assist-card">
+                <div class="assist-icon">✈️</div>
+                <div class="assist-title">Rapatriement du corps</div>
+                <div class="assist-text">Organisation et prise en charge du rapatriement en France ou à l'étranger</div>
+            </div>
+            <div class="assist-card">
+                <div class="assist-icon">🚗</div>
+                <div class="assist-title">Retour des proches</div>
+                <div class="assist-text">Transport des membres de la famille pour rejoindre le lieu des obsèques</div>
+            </div>
+            <div class="assist-card">
+                <div class="assist-icon">📋</div>
+                <div class="assist-title">Coordination des obsèques</div>
+                <div class="assist-text">Accompagnement administratif et logistique complet pour les démarches</div>
+            </div>
+            <div class="assist-card">
+                <div class="assist-icon">🏠</div>
+                <div class="assist-title">Aide ménagère</div>
+                <div class="assist-text">Soutien au domicile durant la période de deuil pour soulager les proches</div>
+            </div>
+            <div class="assist-card">
+                <div class="assist-icon">🧒</div>
+                <div class="assist-title">Garde d'enfants et animaux</div>
+                <div class="assist-text">Prise en charge des enfants et des animaux de compagnie pendant les funérailles</div>
+            </div>
+            <div class="assist-card">
+                <div class="assist-icon">🔑</div>
+                <div class="assist-title">Surveillance du domicile</div>
+                <div class="assist-text">Protection de votre habitation durant l'absence liée aux obsèques</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Le Choix Funéraire Section -->
+    <section class="choix-funeraire">
+        <div class="section-title">
+            <h2>Avec Prima Volontés, Le Choix Funéraire s'occupe de tout</h2>
+            <p>Un accompagnement humain à chaque étape, avant, pendant et après</p>
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="timeline-grid">
+                <div class="timeline-card">
+                    <div class="timeline-phase">Avant</div>
+                    <div class="timeline-icon">📝</div>
+                    <div class="timeline-title">Préparation & Souhaits</div>
+                    <ul class="timeline-list">
+                        <li>Mise en relation avec un conseiller funéraire</li>
+                        <li>Enregistrement de vos volontés</li>
+                        <li>Envoi des faire-part à vos proches</li>
+                        <li>Choix du type de cérémonie</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-phase">Jour J</div>
+                    <div class="timeline-icon">🕯️</div>
+                    <div class="timeline-title">La Cérémonie</div>
+                    <ul class="timeline-list">
+                        <li>Maître de cérémonie dédié</li>
+                        <li>Coordination complète de la journée</li>
+                        <li>Respect de vos volontés et de votre dignité</li>
+                        <li>Prise en charge totale des démarches</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-phase">Après</div>
+                    <div class="timeline-icon">💙</div>
+                    <div class="timeline-title">Soutien au Deuil</div>
+                    <ul class="timeline-list">
+                        <li>Écoute et soutien psychologique</li>
+                        <li>Envoi des cartes de remerciement</li>
+                        <li>Aide aux démarches administratives</li>
+                        <li>Accompagnement dans le temps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Préparez l'avenir en toute confiance</h2>
+        <p>Nos conseillers AG2R LA MONDIALE vous guident vers la formule adaptée à vos besoins et à votre budget</p>
+        <a href="#" class="cta-button">Choisir ma formule</a>
+        <div class="cta-note">Souscription sans formalité médicale — Réponse immédiate</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AG2R LA MONDIALE — Tous droits réservés</p>
+        <p>Prima Capital Obsèques+ et Prima Volontés Obsèques+ sont des produits d'assurance distribués par AG2R LA MONDIALE.</p>
+        <p class="legal">
+            AG2R LA MONDIALE — Institution de prévoyance régie par le Code de la Sécurité Sociale.
+            Les garanties et services présentés sont soumis à conditions. Les tarifs indiqués sont donnés à titre indicatif.
+            Document non contractuel. Pour toute information, consultez les documents contractuels disponibles auprès de votre conseiller.
+            Label Excellence décerné par le magazine Dossiers Familials — 10e année consécutive en 2024.
+        </p>
+    </footer>
+
+    <script>
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(
+            '.solution-card, .assist-card, .timeline-card, .stat-item'
+        ).forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
