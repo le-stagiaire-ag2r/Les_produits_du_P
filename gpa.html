@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garantie Prévoyance Individuelle (GPA) | AG2R LA MONDIALE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #FF6B9D;
+            --primary-orange: #FF8E53;
+            --dark-bg: #0a0e27;
+            --gradient-gpa: linear-gradient(135deg, #FF6B9D 0%, #FF8E53 100%);
+            --gradient-gpa-soft: linear-gradient(135deg, rgba(255,107,157,0.15) 0%, rgba(255,142,83,0.15) 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a0e1e, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            background: rgba(255, 107, 157, 0.08);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .bg-animation span:nth-child(7) {
+            left: 5%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 7s;
+            animation-duration: 20s;
+        }
+
+        .bg-animation span:nth-child(8) {
+            left: 55%;
+            width: 35px;
+            height: 35px;
+            animation-delay: 1s;
+            animation-duration: 15s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+            cursor: pointer;
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-gpa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 20px 90px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--gradient-gpa-soft);
+            border: 1px solid rgba(255,107,157,0.4);
+            border-radius: 30px;
+            font-size: 0.95em;
+            color: #FF6B9D;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            background: var(--gradient-gpa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            line-height: 1.15;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 50px 20px;
+            background: rgba(0,0,0,0.35);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,107,157,0.3);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,107,157,0.6);
+            box-shadow: 0 12px 30px rgba(255,107,157,0.2);
+        }
+
+        .stat-value {
+            font-size: 1.7em;
+            font-weight: 800;
+            background: var(--gradient-gpa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-gpa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
+        }
+
+        /* Garanties principales */
+        .garanties {
+            padding: 80px 20px;
+        }
+
+        .garanties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .garantie-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,107,157,0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .garantie-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-gpa);
+        }
+
+        .garantie-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,107,157,0.6);
+            box-shadow: 0 20px 50px rgba(255,107,157,0.2);
+        }
+
+        .garantie-icon {
+            font-size: 2.8em;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .garantie-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #FF6B9D;
+            margin-bottom: 12px;
+        }
+
+        .garantie-capital {
+            font-size: 1.15em;
+            font-weight: 700;
+            background: var(--gradient-gpa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .garantie-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+        }
+
+        .garantie-note {
+            margin-top: 16px;
+            padding: 12px 16px;
+            background: rgba(255,107,157,0.1);
+            border-radius: 10px;
+            border-left: 3px solid #FF6B9D;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Options complementaires */
+        .options {
+            padding: 80px 20px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .option-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,142,83,0.3);
+            transition: all 0.3s;
+        }
+
+        .option-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255,142,83,0.6);
+            box-shadow: 0 15px 40px rgba(255,142,83,0.2);
+        }
+
+        .option-icon {
+            font-size: 2.4em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .option-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #FF8E53;
+            margin-bottom: 12px;
+        }
+
+        .option-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+        }
+
+        .option-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .option-list li {
+            padding: 6px 0 6px 22px;
+            color: rgba(255,255,255,0.75);
+            position: relative;
+            font-size: 0.95em;
+        }
+
+        .option-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #FF8E53;
+        }
+
+        /* Tarifs Table */
+        .tarifs {
+            padding: 80px 20px;
+        }
+
+        .table-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow-x: auto;
+            border-radius: 20px;
+            border: 1px solid rgba(255,107,157,0.25);
+            box-shadow: 0 8px 40px rgba(255,107,157,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+        }
+
+        thead tr {
+            background: var(--gradient-gpa);
+        }
+
+        thead th {
+            padding: 18px 20px;
+            text-align: left;
+            font-size: 0.95em;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid rgba(255,107,157,0.1);
+            transition: background 0.2s;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(255,107,157,0.06);
+        }
+
+        tbody td {
+            padding: 16px 20px;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95em;
+        }
+
+        tbody td:first-child {
+            color: #FF6B9D;
+            font-weight: 700;
+        }
+
+        .price-cell {
+            font-weight: 800;
+            font-size: 1.05em;
+            background: var(--gradient-gpa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Assistance Section */
+        .assistance {
+            padding: 80px 20px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .assistance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .assistance-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 28px 24px;
+            border-radius: 18px;
+            border: 1px solid rgba(255,142,83,0.25);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .assistance-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,142,83,0.5);
+            box-shadow: 0 12px 30px rgba(255,142,83,0.15);
+        }
+
+        .assistance-icon {
+            font-size: 2.2em;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .assistance-title {
+            font-size: 1em;
+            font-weight: 700;
+            color: #FF8E53;
+            margin-bottom: 8px;
+        }
+
+        .assistance-desc {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        /* Conseil Box */
+        .conseil {
+            padding: 70px 20px;
+        }
+
+        .conseil-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--gradient-gpa-soft);
+            border: 1px solid rgba(255,107,157,0.4);
+            border-radius: 24px;
+            padding: 50px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conseil-card::before {
+            content: "💡";
+            font-size: 3em;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .conseil-label {
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #FF6B9D;
+            margin-bottom: 12px;
+        }
+
+        .conseil-text {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .conseil-sub {
+            font-size: 1em;
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--gradient-gpa);
+            position: relative;
+        }
+
+        .cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .cta > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 18px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 44px;
+            background: white;
+            color: #FF6B9D;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #FF6B9D;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0,0,0,0.55);
+            text-align: center;
+            border-top: 1px solid rgba(255,107,157,0.25);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.75);
+        }
+
+        footer .legal {
+            font-size: 0.85em;
+            margin-top: 12px;
+            opacity: 0.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4em; }
+            .hero .subtitle { font-size: 1.4em; }
+            .garanties-grid, .options-grid { grid-template-columns: 1fr; }
+            .conseil-card { padding: 35px 25px; }
+            .cta h2 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="prevoyance.html" class="back-btn">
+                    <span>&#8592;</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Prévoyance Individuelle</div>
+        <h1>Garantie Prévoyance Individuelle</h1>
+        <div class="subtitle">Préservez vos proches, quoi qu'il arrive</div>
+        <p>Protégez votre famille face aux aléas de la vie : décès, invalidité absolue et définitive, incapacité de travail. Une couverture solide et modulable, au tarif adapté à votre situation.</p>
+    </section>
+
+    <!-- Key Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">Jusqu'à 70 ans</div>
+                <div class="stat-label">Souscription possible</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Jusqu'à 75 ans</div>
+                <div class="stat-label">Couverture maintenue</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Dès 2,94&#8239;€/mois</div>
+                <div class="stat-label">Cotisation mensuelle</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">Simplifiée</div>
+                <div class="stat-label">Déclaration de santé</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2 Garanties principales -->
+    <section class="garanties">
+        <div class="section-title">
+            <h2>2 garanties principales</h2>
+            <p>Un socle de protection solide pour vous et vos proches</p>
+        </div>
+
+        <div class="garanties-grid">
+            <div class="garantie-card">
+                <span class="garantie-icon">🛡️</span>
+                <div class="garantie-title">Décès / IAD</div>
+                <div class="garantie-capital">Capital de 15&#8239;000&#8239;€ à 70&#8239;000&#8239;€ et plus</div>
+                <p class="garantie-desc">En cas de décès ou d'Invalidité Absolue et Définitive (IAD), le capital choisi est versé directement aux bénéficiaires désignés, permettant de faire face aux charges financières immédiates et d'assurer la continuité de leur mode de vie.</p>
+                <div class="garantie-note">Le capital est versé en une fois, libre d'emploi pour les bénéficiaires.</div>
+            </div>
+
+            <div class="garantie-card">
+                <span class="garantie-icon">🩺</span>
+                <div class="garantie-title">Options ITT / IPT</div>
+                <div class="garantie-capital">Indemnité journalière de maintien de revenus</div>
+                <p class="garantie-desc">En cas d'Incapacité Temporaire Totale de travail (ITT) ou d'Invalidité Permanente Totale (IPT), des indemnités journalières compensent la perte de revenus pendant votre arrêt, avec le niveau et la franchise de votre choix.</p>
+                <div class="garantie-note">Accessible à partir d'un capital décès de 15&#8239;000&#8239;€. Différentes franchises disponibles (30, 60, 90, 180 ou 365 jours).</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options complementaires -->
+    <section class="options">
+        <div class="section-title">
+            <h2>Options complémentaires</h2>
+            <p>Renforcez votre protection selon vos besoins</p>
+        </div>
+
+        <div class="options-grid">
+            <div class="option-card">
+                <span class="option-icon">⚡</span>
+                <div class="option-title">Doublement en cas d'accident</div>
+                <p class="option-desc">Le capital décès/IAD est intégralement doublé si le sinistre résulte directement d'un accident corporel, offrant une protection renforcée pour les situations les plus brutales.</p>
+            </div>
+
+            <div class="option-card">
+                <span class="option-icon">🤝</span>
+                <div class="option-title">Services d'assistance</div>
+                <p class="option-desc">Un ensemble de services concrets pour accompagner vos proches au quotidien en cas de coup dur :</p>
+                <ul class="option-list">
+                    <li>Aide à la recherche d'emploi</li>
+                    <li>Assistance vie quotidienne à domicile</li>
+                    <li>Aide à la vente ou location immobilière</li>
+                    <li>Accompagnement au déménagement</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section class="tarifs">
+        <div class="section-title">
+            <h2>Exemples de tarifs</h2>
+            <p>Des cotisations adaptées à votre âge et à vos besoins</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cas</th>
+                        <th>Âge</th>
+                        <th>Capital</th>
+                        <th>Options souscrites</th>
+                        <th>Cotisation / mois</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>27 ans</td>
+                        <td>30&#8239;000&#8239;€</td>
+                        <td>Aucune option</td>
+                        <td class="price-cell">2,94&#8239;€</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>35 ans</td>
+                        <td>20&#8239;000&#8239;€</td>
+                        <td>IJ 15&#8239;€/j &mdash; franchise 365 jours</td>
+                        <td class="price-cell">13,54&#8239;€</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>48 ans</td>
+                        <td>60&#8239;000&#8239;€</td>
+                        <td>Doublement en cas d'accident</td>
+                        <td class="price-cell">31,10&#8239;€</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>59 ans</td>
+                        <td>70&#8239;000&#8239;€</td>
+                        <td>Doublement accident + IJ 60&#8239;€/j &mdash; franchise 90 jours</td>
+                        <td class="price-cell">195,58&#8239;€</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Assistance incluse -->
+    <section class="assistance">
+        <div class="section-title">
+            <h2>Assistance incluse</h2>
+            <p>Des services humains pour accompagner vos proches dans les moments difficiles</p>
+        </div>
+
+        <div class="assistance-grid">
+            <div class="assistance-item">
+                <span class="assistance-icon">✈️</span>
+                <div class="assistance-title">Rapatriement du défunt</div>
+                <div class="assistance-desc">Organisation et prise en charge du rapatriement du corps depuis n'importe où en France ou à l'étranger.</div>
+            </div>
+
+            <div class="assistance-item">
+                <span class="assistance-icon">🏠</span>
+                <div class="assistance-title">Retour des proches</div>
+                <div class="assistance-desc">Prise en charge du retour au domicile des membres de la famille présents sur le lieu du décès.</div>
+            </div>
+
+            <div class="assistance-item">
+                <span class="assistance-icon">📋</span>
+                <div class="assistance-title">Aide obsèques &amp; succession</div>
+                <div class="assistance-desc">Assistance administrative pour l'organisation des obsèques et l'ouverture de la succession.</div>
+            </div>
+
+            <div class="assistance-item">
+                <span class="assistance-icon">💬</span>
+                <div class="assistance-title">Aide psychologique</div>
+                <div class="assistance-desc">Soutien psychologique pour le conjoint et les enfants mineurs lors des périodes de deuil.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Conseil -->
+    <section class="conseil">
+        <div class="conseil-card">
+            <div class="conseil-label">Notre conseil</div>
+            <div class="conseil-text">"Optez pour un capital équivalent à 1 ou 2 ans de revenus"</div>
+            <p class="conseil-sub">Ce niveau de couverture permet à vos proches de maintenir leur niveau de vie pendant le temps nécessaire pour s'organiser. Ajustez votre capital au fil du temps selon l'évolution de votre situation familiale et professionnelle.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Protégez vos proches dès aujourd'hui</h2>
+        <p>Nos conseillers AG2R LA MONDIALE vous accompagnent pour trouver la couverture adaptée à votre situation</p>
+        <div class="cta-buttons">
+            <a href="#" class="cta-button">Demander un devis</a>
+            <a href="#" class="cta-button secondary">Être rappelé</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AG2R LA MONDIALE &mdash; Tous droits réservés</p>
+        <p class="legal">
+            La GPA est un contrat d'assurance décès individuel souscrit auprès d'AG2R Prévoyance, institution de prévoyance régie par le livre IX du Code de la Sécurité Sociale, membre du groupe AG2R LA MONDIALE. Les garanties, exclusions et conditions sont définies dans les conditions générales et particulières du contrat remises lors de la souscription. Tarifs donnés à titre indicatif, non contractuels.
+        </p>
+    </footer>
+
+    <script>
+        // Scroll-triggered fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.garantie-card, .option-card, .stat-item, .assistance-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

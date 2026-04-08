@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assurance Autonomie - Dépendance | AG2R LA MONDIALE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --accent-purple: #667eea;
+            --accent-violet: #764ba2;
+            --accent-light: #a78bfa;
+            --dark-bg: #0a0e27;
+            --gradient-auto: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-auto-rev: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            --gradient-soft: linear-gradient(135deg, #a78bfa 0%, #667eea 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #130a27, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            background: rgba(102, 126, 234, 0.08);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+            border-radius: 4px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+            background: rgba(118, 75, 162, 0.1);
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+            background: rgba(118, 75, 162, 0.07);
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+            background: rgba(118, 75, 162, 0.06);
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            cursor: pointer;
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-auto);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            background: var(--gradient-auto);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.7);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Key Stats */
+        .key-stats {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.3em;
+            font-weight: bold;
+            background: var(--gradient-soft);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.93em;
+        }
+
+        /* Packs Section */
+        .packs {
+            padding: 90px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-auto);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
+        }
+
+        .packs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pack-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 45px 38px;
+            border-radius: 24px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pack-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-auto);
+        }
+
+        .pack-card.confort::before {
+            background: var(--gradient-auto-rev);
+        }
+
+        .pack-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 25px 55px rgba(102, 126, 234, 0.2);
+        }
+
+        .pack-badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .pack-badge.securite {
+            background: rgba(102, 126, 234, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(102, 126, 234, 0.4);
+        }
+
+        .pack-badge.confort {
+            background: rgba(118, 75, 162, 0.2);
+            color: #c084fc;
+            border: 1px solid rgba(118, 75, 162, 0.4);
+        }
+
+        .pack-icon {
+            font-size: 3em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .pack-name {
+            font-size: 1.7em;
+            font-weight: 700;
+            background: var(--gradient-auto);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .pack-card.confort .pack-name {
+            background: var(--gradient-auto-rev);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pack-price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #a78bfa;
+            margin-bottom: 5px;
+        }
+
+        .pack-card.confort .pack-price {
+            color: #c084fc;
+        }
+
+        .pack-price-note {
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 28px;
+        }
+
+        .pack-features {
+            list-style: none;
+        }
+
+        .pack-features li {
+            padding: 10px 0;
+            color: rgba(255,255,255,0.82);
+            padding-left: 28px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.95em;
+        }
+
+        .pack-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pack-features li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        .pack-card.confort .pack-features li::before {
+            color: #c084fc;
+        }
+
+        /* Key Advantages */
+        .advantages {
+            padding: 80px 20px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .advantage-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px 26px;
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.25);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.15);
+        }
+
+        .advantage-icon {
+            font-size: 2.5em;
+            margin-bottom: 14px;
+        }
+
+        .advantage-value {
+            font-size: 1.7em;
+            font-weight: bold;
+            background: var(--gradient-soft);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .advantage-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 8px;
+        }
+
+        .advantage-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.88em;
+        }
+
+        /* Anticipate Section */
+        .anticipate {
+            padding: 90px 20px;
+        }
+
+        .anticipate-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .anticipate-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .anticipate-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-block {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 28px 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(102, 126, 234, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .stat-block:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateX(6px);
+        }
+
+        .stat-block-icon {
+            font-size: 2.2em;
+            flex-shrink: 0;
+        }
+
+        .stat-block-number {
+            font-size: 1.8em;
+            font-weight: bold;
+            background: var(--gradient-auto);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .stat-block-label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+
+        .anticipate-reasons {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .reason-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .reason-number {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gradient-auto);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1em;
+            color: white;
+        }
+
+        .reason-content h4 {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 5px;
+        }
+
+        .reason-content p {
+            color: rgba(255,255,255,0.65);
+            font-size: 0.9em;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 20px;
+            text-align: center;
+            background: var(--gradient-auto);
+            position: relative;
+        }
+
+        .cta h2 {
+            font-size: 2.5em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 35px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 48px;
+            background: white;
+            color: #4a3270;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.15em;
+            transition: all 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-note {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.75);
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border-top: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 8px;
+        }
+
+        footer .legal {
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.45);
+            max-width: 900px;
+            margin: 12px auto 0;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .anticipate-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.4em;
+            }
+            .hero .subtitle {
+                font-size: 1.4em;
+            }
+            .packs-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="prevoyance.html" class="back-btn">
+                    <span>←</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Assurance Autonomie</h1>
+        <div class="subtitle">Protégez votre avenir face à la dépendance</div>
+        <p>
+            Maintenir votre qualité de vie en cas de perte d'autonomie est une priorité. Notre assurance vous garantit
+            une rente mensuelle à vie pour vous permettre de faire face à la dépendance totale ou partielle
+            sans peser sur vos proches.
+        </p>
+    </section>
+
+    <!-- Key Stats -->
+    <section class="key-stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">260 000+</span>
+                <span class="stat-label">assurés nous font confiance</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">30+ ans</span>
+                <span class="stat-label">d'expertise en assurance dépendance</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Dès 10,81€</span>
+                <span class="stat-label">par mois (à 50 ans, Pack Sécurité)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Jusqu'à 74 ans</span>
+                <span class="stat-label">âge limite de souscription</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packs Section -->
+    <section class="packs">
+        <div class="section-title">
+            <h2>2 packs de protection</h2>
+            <p>Choisissez la couverture adaptée à votre situation et vos objectifs</p>
+        </div>
+
+        <div class="packs-grid">
+            <!-- Pack Sécurité -->
+            <div class="pack-card">
+                <span class="pack-badge securite">Pack Sécurité</span>
+                <span class="pack-icon">🛡️</span>
+                <div class="pack-name">Pack Sécurité</div>
+                <div class="pack-price">Dès 10,81€<span style="font-size:0.55em; color: rgba(255,255,255,0.6)">/mois</span></div>
+                <div class="pack-price-note">Tarif à 50 ans — prime indicative</div>
+
+                <ul class="pack-features">
+                    <li>Rente mensuelle à partir de <strong>300€/mois</strong></li>
+                    <li>Couverture <strong>dépendance totale</strong></li>
+                    <li>Versement de la rente à vie dès reconnaissance de l'état de dépendance</li>
+                    <li>1 seule question de santé pour souscrire</li>
+                    <li>Réduction de <strong>20%</strong> pour le conjoint/partenaire</li>
+                    <li>Souscription jusqu'à <strong>74 ans</strong></li>
+                </ul>
+            </div>
+
+            <!-- Pack Confort -->
+            <div class="pack-card confort">
+                <span class="pack-badge confort">Pack Confort</span>
+                <span class="pack-icon">✨</span>
+                <div class="pack-name">Pack Confort</div>
+                <div class="pack-price">Dès 17,52€<span style="font-size:0.55em; color: rgba(255,255,255,0.6)">/mois</span></div>
+                <div class="pack-price-note">Tarif à 50 ans — prime indicative</div>
+
+                <ul class="pack-features">
+                    <li>Rente mensuelle <strong>plus élevée</strong> selon votre choix</li>
+                    <li>Couverture <strong>dépendance totale ET partielle</strong></li>
+                    <li>Versement de la rente à vie dès reconnaissance de l'état de dépendance</li>
+                    <li>1 seule question de santé pour souscrire</li>
+                    <li>Réduction de <strong>20%</strong> pour le conjoint/partenaire</li>
+                    <li>Services additionnels : aide à domicile, adaptation logement</li>
+                    <li>Bilan de prévention offert</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avantages Clés -->
+    <section class="advantages">
+        <div class="section-title">
+            <h2>Avantages clés</h2>
+            <p>Un contrat conçu pour s'adapter à votre vie</p>
+        </div>
+
+        <div class="advantages-grid">
+            <div class="advantage-card">
+                <div class="advantage-icon">💰</div>
+                <div class="advantage-value">300€ – 4 000€</div>
+                <div class="advantage-title">Rente mensuelle</div>
+                <div class="advantage-text">Choisissez librement le montant de votre rente mensuelle pour couvrir vos besoins réels</div>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">📋</div>
+                <div class="advantage-value">1 question</div>
+                <div class="advantage-title">Souscription simplifiée</div>
+                <div class="advantage-text">Une seule question de santé suffit pour souscrire, sans examen médical approfondi</div>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">👫</div>
+                <div class="advantage-value">-20%</div>
+                <div class="advantage-title">Réduction conjoint</div>
+                <div class="advantage-text">Votre conjoint ou partenaire de PACS bénéficie d'une réduction de 20% sur sa cotisation</div>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">🎂</div>
+                <div class="advantage-value">Jusqu'à 74 ans</div>
+                <div class="advantage-title">Souscription tardive possible</div>
+                <div class="advantage-text">Possibilité de souscrire jusqu'à 74 ans, même si vous avez attendu pour vous protéger</div>
+            </div>
+
+            <div class="advantage-card">
+                <div class="advantage-icon">♾️</div>
+                <div class="advantage-value">À vie</div>
+                <div class="advantage-title">Rente viagère</div>
+                <div class="advantage-text">La rente est versée à vie dès la reconnaissance officielle de votre état de dépendance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi anticiper -->
+    <section class="anticipate">
+        <div class="anticipate-inner">
+            <div class="section-title">
+                <h2>Pourquoi anticiper ?</h2>
+                <p>Les chiffres de la dépendance en France parlent d'eux-mêmes</p>
+            </div>
+
+            <div class="anticipate-grid">
+                <div class="anticipate-stats">
+                    <div class="stat-block">
+                        <div class="stat-block-icon">👴</div>
+                        <div>
+                            <div class="stat-block-number">1 personne sur 2</div>
+                            <div class="stat-block-label">sera concernée par la dépendance après 85 ans</div>
+                        </div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-block-icon">📅</div>
+                        <div>
+                            <div class="stat-block-number">4 ans</div>
+                            <div class="stat-block-label">durée moyenne d'un état de dépendance en France</div>
+                        </div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-block-icon">🏥</div>
+                        <div>
+                            <div class="stat-block-number">3 000€/mois</div>
+                            <div class="stat-block-label">coût moyen d'un établissement spécialisé (EHPAD)</div>
+                        </div>
+                    </div>
+                    <div class="stat-block">
+                        <div class="stat-block-icon">💶</div>
+                        <div>
+                            <div class="stat-block-number">1 400€ de reste</div>
+                            <div class="stat-block-label">à charge mensuel moyen après aides publiques</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="anticipate-reasons">
+                    <h3 style="font-size: 1.4em; background: var(--gradient-auto); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;">Les bonnes raisons de souscrire tôt</h3>
+
+                    <div class="reason-item">
+                        <div class="reason-number">1</div>
+                        <div class="reason-content">
+                            <h4>Un tarif nettement plus bas</h4>
+                            <p>Plus vous souscrivez jeune, plus votre cotisation est réduite et reste stable dans le temps. À 40 ans, la prime est deux fois moins élevée qu'à 60 ans.</p>
+                        </div>
+                    </div>
+
+                    <div class="reason-item">
+                        <div class="reason-number">2</div>
+                        <div class="reason-content">
+                            <h4>Protéger vos proches</h4>
+                            <p>Évitez que votre dépendance ne pèse financièrement ou moralement sur vos enfants ou votre conjoint. Gardez votre indépendance, même en cas de perte d'autonomie.</p>
+                        </div>
+                    </div>
+
+                    <div class="reason-item">
+                        <div class="reason-number">3</div>
+                        <div class="reason-content">
+                            <h4>Maintenir votre niveau de vie</h4>
+                            <p>La rente mensuelle couvre une partie ou la totalité des frais de prise en charge, à domicile ou en établissement, selon vos choix et besoins.</p>
+                        </div>
+                    </div>
+
+                    <div class="reason-item">
+                        <div class="reason-number">4</div>
+                        <div class="reason-content">
+                            <h4>Anticiper l'insuffisance des aides publiques</h4>
+                            <p>L'APA (Allocation Personnalisée d'Autonomie) ne couvre en moyenne que 35% du coût réel de la dépendance. Une assurance privée est indispensable pour combler l'écart.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Préparez votre autonomie dès aujourd'hui</h2>
+        <p>Nos conseillers AG2R LA MONDIALE calculent votre cotisation personnalisée en quelques minutes</p>
+        <a href="#" class="cta-button">Calculer ma cotisation</a>
+        <div class="cta-note">Simulation gratuite et sans engagement — Réponse immédiate</div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 AG2R LA MONDIALE — Tous droits réservés</p>
+        <p>L'Assurance Autonomie est un produit de prévoyance distribué par AG2R LA MONDIALE.</p>
+        <p class="legal">
+            AG2R LA MONDIALE — Institution de prévoyance régie par le Code de la Sécurité Sociale.
+            Les garanties présentées sont soumises à conditions d'adhésion. Les tarifs indiqués (à partir de 10,81€/mois et 17,52€/mois)
+            correspondent à des cotisations indicatives calculées pour un assuré de 50 ans et peuvent varier selon l'âge et les options choisies.
+            La rente est versée sous réserve de la reconnaissance officielle d'un état de dépendance totale ou partielle selon les critères
+            définis au contrat. Document non contractuel à caractère publicitaire. Pour toute information, consultez les documents contractuels
+            disponibles auprès de votre conseiller AG2R LA MONDIALE.
+        </p>
+    </footer>
+
+    <script>
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(
+            '.pack-card, .advantage-card, .stat-block, .reason-item, .stat-item'
+        ).forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
