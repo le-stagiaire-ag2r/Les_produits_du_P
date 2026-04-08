@@ -534,11 +534,25 @@
             .hero h1 {
                 font-size: 2.5em;
             }
-            
+
             .modes-grid, .benefits-grid {
                 grid-template-columns: 1fr;
             }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,0.25); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; opacity: 0.7; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -754,6 +768,36 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">Quel est le montant minimum pour ouvrir un contrat Vivépargne II ?</div>
+                <div class="faq-a">Le premier versement minimum est de 1 500€. Ensuite, vous pouvez effectuer des versements libres à partir de 300€ ou des versements programmés à partir de 35€/mois.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Quels sont les frais de gestion ?</div>
+                <div class="faq-a">Les frais de gestion sur le fonds en euros sont de 0,62%/an. La participation aux bénéfices 2023 était de 2% net. Un arbitrage gratuit est disponible par année civile.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Mon capital est-il garanti ?</div>
+                <div class="faq-a">Le fonds en euros est garanti en capital. Les unités de compte présentent un risque de perte en capital, leur valeur pouvant fluctuer à la hausse comme à la baisse selon les marchés financiers. Une garantie plancher décès est incluse.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Puis-je récupérer mon épargne à tout moment ?</div>
+                <div class="faq-a">Oui, votre épargne est disponible à tout moment via des rachats partiels ou totaux. Fiscalement, après 8 ans de détention, vous bénéficiez d'un abattement annuel de 4 600€ (ou 9 200€ pour un couple) sur les gains.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce que l'option dynamisation ?</div>
+                <div class="faq-a">L'option dynamisation (disponible à partir de 5 000€ en euros) permet d'investir automatiquement les intérêts annuels du fonds euros sur le support ALM Actions Monde ISR, pour dynamiser la performance de votre contrat.</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 AG2R LA MONDIALE - Tous droits réservés</p>
@@ -779,6 +823,13 @@
 
         document.querySelectorAll('.feature-card, .mode-card, .benefit-card').forEach(el => {
             observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
         });
     </script>
 </body>
