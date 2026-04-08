@@ -470,6 +470,20 @@
                 max-width: 300px;
             }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,0.25); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; opacity: 0.7; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -669,6 +683,36 @@
             </div>
         </section>
 
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="section-title">
+                <h2>Questions Fréquentes</h2>
+                <p>Tout ce que vous devez savoir</p>
+            </div>
+            <div class="faq-wrap">
+                <div class="faq-item">
+                    <div class="faq-q">Quel est le versement minimum pour souscrire ?</div>
+                    <div class="faq-a">Le versement initial minimum est de 30 000€. Cette solution est réservée aux projets patrimoniaux et nécessite un accompagnement personnalisé par un conseiller AG2R LA MONDIALE.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Quelle est la différence entre le contrat Vie et le contrat Capi ?</div>
+                    <div class="faq-a">Le contrat Vie (assurance vie) permet une transmission hors succession avec abattement de 152 500€ par bénéficiaire avant 70 ans. Le contrat Capi (capitalisation) ne désigne pas de bénéficiaire et entre dans la succession, mais conserve son antériorité fiscale en cas de donation ou succession.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Qu'est-ce que le profil Loi Industrie Verte ?</div>
+                    <div class="faq-a">Le profil Loi Industrie Verte est l'un des 6 profils de gestion profilée. Conformément à la loi du 23 octobre 2023, il intègre une part minimale d'actifs non cotés (private equity, infrastructure, immobilier non coté) dans l'allocation, contribuant au financement de l'économie réelle.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Quels sont les frais du contrat ?</div>
+                    <div class="faq-a">Les frais d'entrée sont de 3% maximum sur chaque versement. Les frais de gestion annuels sont de 0,75%/an sur le fonds euros et 0,80%/an sur les unités de compte. Des frais d'arbitrage peuvent s'appliquer au-delà du quota gratuit annuel.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">Qu'est-ce que l'option Clic Floor ?</div>
+                    <div class="faq-a">L'option Clic Floor est une option de désensibilisation progressive : elle transfère automatiquement une partie de votre épargne en unités de compte vers le fonds euros sécurisé dès qu'un seuil de valorisation est atteint. Cela permet de protéger vos gains tout en maintenant un potentiel de performance.</div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -730,6 +774,13 @@
 
         // Initialisation
         createParticles();
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
+        });
     </script>
 </body>
 </html>

@@ -693,6 +693,20 @@
         @media (max-width: 480px) {
             .niveaux-grid { grid-template-columns: 1fr; }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,167,38,0.2); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,167,38,0.45); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; color: #FFA726; opacity: 0.8; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -884,6 +898,36 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">À partir de quel jour l'indemnité est-elle versée ?</div>
+                <div class="faq-a">L'indemnité est versée dès le 1er jour d'hospitalisation, sans délai de carence pour les hospitalisations en médecine, chirurgie et obstétrique. Le terme 'Premier Jour' définit précisément cette caractéristique.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Quels sont les 4 niveaux disponibles ?</div>
+                <div class="faq-a">Les 4 niveaux offrent des indemnités journalières de 17€, 27€, 37€ ou 47€ par jour d'hospitalisation, avec des indemnités chirurgicales correspondantes de 46€, 86€, 136€ ou 206€ par intervention.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">L'hospitalisation ambulatoire est-elle couverte ?</div>
+                <div class="faq-a">Oui, les hospitalisations en ambulatoire (chirurgie ou médecine sans nuit) sont couvertes selon les conditions de votre niveau de garantie.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce que VIASSISTANCE ?</div>
+                <div class="faq-a">VIASSISTANCE est un service d'assistance complet inclus dans la garantie. Il comprend le transport, la garde d'enfants, l'aide ménagère, le soutien administratif et le retour au domicile en cas d'hospitalisation de l'assuré.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Peut-on cumuler avec sa complémentaire santé ?</div>
+                <div class="faq-a">Oui, la Garantie Hospitalière Premier Jour est complémentaire à votre mutuelle santé (PROTECVIA ou autre). Elle verse des indemnités forfaitaires directement à l'assuré, sans rapport avec les remboursements de la Sécurité Sociale.</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 AG2R LA MONDIALE &mdash; Tous droits réservés</p>
@@ -911,6 +955,13 @@
         document.querySelectorAll('.niveau-card, .pourquoi-card, .stat-item, .via-item').forEach(el => {
             el.style.opacity = '0';
             observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
         });
     </script>
 </body>

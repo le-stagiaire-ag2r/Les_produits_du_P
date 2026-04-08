@@ -665,6 +665,20 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,0.25); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; opacity: 0.7; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -879,6 +893,36 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">Quelle est la différence entre Prima Capital et Prima Volontés ?</div>
+                <div class="faq-a">Prima Capital Obsèques+ verse un capital à vos bénéficiaires (de 1 000€ à 18 400€) pour financer les obsèques. Prima Volontés Obsèques+ est une prestation en nature : elle prend en charge directement l'organisation et le financement des obsèques selon la formule choisie (Initiale 3 400€, Sérénité 4 100€ ou Prestige 5 900€).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Jusqu'à quel âge peut-on souscrire ?</div>
+                <div class="faq-a">Prima Capital Obsèques+ est accessible jusqu'à 85 ans, sans questionnaire médical. La couverture en cas de décès accidentel est immédiate, et en cas de décès toutes causes dès le 7ème mois.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Le capital obsèques est-il imposable ?</div>
+                <div class="faq-a">Non. Le capital versé par Prima Capital Obsèques+ est non imposable car il est régi par le droit des assurances vie. Il ne rentre pas dans la succession.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce que le Label Excellence 2024 ?</div>
+                <div class="faq-a">Le Label Excellence des Dossiers de l'Épargne récompense les meilleures offres du marché pour leur rapport qualité-prix. AG2R LA MONDIALE a obtenu ce label pour la 10ème année consécutive sur ses garanties obsèques.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Que couvre la formule Prestige de Prima Volontés ?</div>
+                <div class="faq-a">La formule Prestige (5 900€) comprend le cercueil haut de gamme, les prestations funéraires complètes, le transport, les fleurs, les faire-part, et une assistance administrative complète via le partenaire Le Choix Funéraire (réseau UDIFE).</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 AG2R LA MONDIALE — Tous droits réservés</p>
@@ -910,6 +954,13 @@
             '.solution-card, .assist-card, .timeline-card, .stat-item'
         ).forEach(el => {
             observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
         });
     </script>
 </body>
