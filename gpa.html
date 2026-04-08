@@ -720,6 +720,20 @@
             .conseil-card { padding: 35px 25px; }
             .cta h2 { font-size: 1.8em; }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,107,157,0.2); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,107,157,0.45); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; color: #FF6B9D; opacity: 0.8; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -927,6 +941,36 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">Jusqu'à quel âge puis-je souscrire la GPA ?</div>
+                <div class="faq-a">La souscription est possible jusqu'à 70 ans. La garantie décès est maintenue jusqu'à 75 ans. L'adhésion et les cotisations sont facultatives après 65 ans.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Quel capital minimum puis-je choisir ?</div>
+                <div class="faq-a">Le capital décès/IAD est compris entre 15 000€ et plus de 70 000€. L'option ITT/IPT est disponible à partir d'un capital de 15 000€.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">La cotisation évolue-t-elle avec l'âge ?</div>
+                <div class="faq-a">Oui, la cotisation est calculée en fonction de l'âge à la souscription et du capital choisi. Par exemple : 2,94€/mois pour 27 ans avec 30 000€ de capital sans option, ou 195,58€/mois pour 59 ans avec 70 000€ + options doublement et IJ.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce que l'option doublement accident ?</div>
+                <div class="faq-a">En cas de décès ou d'IAD résultant d'un accident, le capital versé est doublé. Cette option est cumulable avec les garanties ITT et IPT.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Quels services d'assistance sont inclus ?</div>
+                <div class="faq-a">L'assistance incluse prend en charge le rapatriement du défunt, le retour des proches, l'aide aux formalités obsèques et succession, ainsi qu'un soutien psychologique pour le conjoint et les enfants mineurs.</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 AG2R LA MONDIALE &mdash; Tous droits réservés</p>
@@ -954,6 +998,13 @@
         document.querySelectorAll('.garantie-card, .option-card, .stat-item, .assistance-item').forEach(el => {
             el.style.opacity = '0';
             observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
         });
     </script>
 </body>

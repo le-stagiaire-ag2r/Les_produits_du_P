@@ -630,11 +630,11 @@
             nav ul {
                 display: none;
             }
-            
+
             .hero h1 {
                 font-size: 2em;
             }
-            
+
             .formula-grid {
                 grid-template-columns: 1fr;
             }
@@ -644,6 +644,20 @@
                 padding: 20px;
             }
         }
+
+        /* FAQ accordion */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item-acc { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item-acc:hover { border-color: rgba(255,255,255,0.25); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; opacity: 0.7; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item-acc.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item-acc.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -1099,6 +1113,36 @@
         </div>
     </section>
 
+    <!-- FAQ accordion -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item-acc">
+                <div class="faq-q">Que couvre la Garantie Protection Accident ?</div>
+                <div class="faq-a">La Garantie Protection Accident couvre les accidents de la vie courante (hors accidents professionnels et maladies). Elle verse un capital en cas de décès accidentel, d'invalidité permanente totale ou partielle, et selon la formule, une indemnité journalière d'hospitalisation.</div>
+            </div>
+            <div class="faq-item-acc">
+                <div class="faq-q">Quelle est la différence entre les formules Essentielles et Intégrales ?</div>
+                <div class="faq-a">Les formules Essentielles (E1 à E2) couvrent uniquement le capital décès/invalidité. Les formules Intégrales (I1 à I4) ajoutent une indemnité journalière d'hospitalisation dès le 1er jour et une couverture des petits accidents du quotidien.</div>
+            </div>
+            <div class="faq-item-acc">
+                <div class="faq-q">À partir de quel âge peut-on souscrire ?</div>
+                <div class="faq-a">La souscription est possible dès la naissance pour les enfants (avec couverture parentale) jusqu'à un âge limite selon la formule. Les cotisations sont fixes et ne dépendent pas de l'âge de l'assuré.</div>
+            </div>
+            <div class="faq-item-acc">
+                <div class="faq-q">Les accidents sportifs sont-ils couverts ?</div>
+                <div class="faq-a">Oui, les accidents survenant lors de la pratique d'activités sportives de loisir (hors sports professionnels et sports extrêmes listés aux exclusions) sont couverts. Consultez les conditions générales pour la liste complète des exclusions.</div>
+            </div>
+            <div class="faq-item-acc">
+                <div class="faq-q">Combien de personnes puis-je assurer ?</div>
+                <div class="faq-a">Vous pouvez assurer vous-même en formule Solo, ou choisir une formule incluant conjoint et/ou enfants. Les formules Duo et Famille sont disponibles avec des tarifs adaptés.</div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta" id="contact">
         <div class="container">
@@ -1196,6 +1240,13 @@
             }
         `;
         document.head.appendChild(style);
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
+        });
     </script>
 </body>
 </html>

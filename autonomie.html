@@ -665,6 +665,20 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,255,255,0.25); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; opacity: 0.7; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -895,6 +909,36 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce que la perte d'autonomie au sens du contrat ?</div>
+                <div class="faq-a">La perte d'autonomie est reconnue dès lors que vous ne pouvez plus accomplir seul au moins 3 des 6 actes de la vie quotidienne (se lever, se laver, s'habiller, se nourrir, se déplacer, aller aux toilettes) ou en cas de troubles cognitifs sévères.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Quand puis-je souscrire et jusqu'à quel âge ?</div>
+                <div class="faq-a">La souscription est possible jusqu'à 74 ans, avec une seule question de santé. Plus tôt vous souscrivez, plus votre cotisation est avantageuse — à 50 ans, la cotisation débute à 10,81€/mois (Pack Sécurité).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">La rente est-elle versée à vie ?</div>
+                <div class="faq-a">Oui, la rente mensuelle (entre 300€ et 4 000€ selon votre choix) est versée à vie dès la reconnaissance de la perte d'autonomie. Elle est revalorisée annuellement.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Y a-t-il des délais de carence ?</div>
+                <div class="faq-a">Un délai de carence de 3 ans s'applique pour la perte d'autonomie liée à la maladie. Il n'y a pas de délai de carence en cas de perte d'autonomie consécutive à un accident.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Ma famille peut-elle bénéficier d'une réduction ?</div>
+                <div class="faq-a">Oui, votre conjoint ou partenaire de PACS bénéficie automatiquement d'une réduction de 20% sur sa cotisation. La couverture compte aujourd'hui plus de 260 000 assurés.</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 AG2R LA MONDIALE — Tous droits réservés</p>
@@ -928,6 +972,13 @@
             '.pack-card, .advantage-card, .stat-block, .reason-item, .stat-item'
         ).forEach(el => {
             observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
         });
     </script>
 </body>

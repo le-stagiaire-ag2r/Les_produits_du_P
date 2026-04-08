@@ -609,6 +609,20 @@
             .levels-grid { grid-template-columns: repeat(2, 1fr); }
             .examples-grid { grid-template-columns: 1fr; }
         }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,107,53,0.2); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(255,107,53,0.45); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; color: #FF6B35; opacity: 0.8; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
     </style>
 </head>
 <body>
@@ -979,13 +993,33 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-        <h2>Protégez votre santé dès aujourd'hui</h2>
-        <p>Nos conseillers VIASANTÉ vous accompagnent pour trouver la formule adaptée</p>
-        <div class="cta-buttons">
-            <a href="#" class="cta-button">Obtenir un devis</a>
-            <a href="#" class="cta-button secondary">09 74 50 1234</a>
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">Combien y a-t-il de niveaux de garanties PROTECVIA ?</div>
+                <div class="faq-a">PROTECVIA propose 6 niveaux de garanties : Indice 20 (non responsable, le plus accessible), Indice 30, 45, 60, 90 et Indice 120 (le plus complet). Chaque niveau peut être complété par le Pack Liberté ou le Pack Confort.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce que la réforme 100% Santé ?</div>
+                <div class="faq-a">La réforme 100% Santé garantit un accès sans reste à charge à des équipements dentaires, optiques et auditifs sélectionnés (paniers 100% Santé). PROTECVIA prend en charge l'intégralité des équipements 100% Santé dès l'Indice 30.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Puis-je changer de niveau de garantie en cours de contrat ?</div>
+                <div class="faq-a">Oui, PROTECVIA offre une souplesse totale pour adapter votre niveau de garantie à l'évolution de vos besoins ou de votre budget. Vous pouvez monter ou descendre de niveau à chaque échéance annuelle.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Le tiers payant est-il inclus ?</div>
+                <div class="faq-a">Oui, la carte tiers payant VIASANTÉ est incluse dans tous les niveaux. Elle vous évite d'avancer les frais chez les professionnels de santé partenaires du réseau Almerys et du réseau de soins Itelis.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">La téléconsultation est-elle vraiment incluse gratuitement ?</div>
+                <div class="faq-a">Oui, la téléconsultation médicale avec des généralistes et spécialistes est disponible 24h/24, 7j/7, sans surcoût, pour tous les niveaux PROTECVIA. Elle est accessible via l'application VIASANTÉ Mutuelle ou l'espace adhérent.</div>
+            </div>
         </div>
     </section>
 
@@ -1008,6 +1042,13 @@
 
         document.querySelectorAll('.level-card, .pack-card, .service-card, .adv-card, .stat-item').forEach(el => {
             observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
         });
     </script>
 </body>
