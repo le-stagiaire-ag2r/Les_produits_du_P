@@ -15,7 +15,7 @@
             --accent-purple: #667eea;
             --accent-violet: #764ba2;
             --accent-light: #a78bfa;
-            --dark-bg: #0a0e27;
+            --dark-bg: #0d2260;
             --gradient-auto: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-auto-rev: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
             --gradient-soft: linear-gradient(135deg, #a78bfa 0%, #667eea 100%);
@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(125deg, #0a0e27, #130a27, #0a0e27);
+            background: linear-gradient(125deg, #0d2260, #130a27, #0d2260);
             z-index: -2;
         }
 
@@ -54,7 +54,7 @@
         .bg-animation span {
             position: absolute;
             display: block;
-            background: rgba(102, 126, 234, 0.08);
+            background: rgba(102, 126, 234, 0.2);
             animation: move 25s linear infinite;
             bottom: -150px;
             border-radius: 4px;
@@ -97,7 +97,7 @@
             width: 20px;
             height: 20px;
             animation-delay: 0s;
-            background: rgba(102, 126, 234, 0.1);
+            background: rgba(102, 126, 234, 0.2);
         }
 
         .bg-animation span:nth-child(6) {
@@ -123,14 +123,14 @@
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 20, 0.2);
             backdrop-filter: blur(10px);
             padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 20px rgba(0,0,20,0.2);
         }
 
         nav {
@@ -229,7 +229,7 @@
         /* Key Stats */
         .key-stats {
             padding: 60px 20px;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 20, 0.22);
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(102, 126, 234, 0.2);
             border-bottom: 1px solid rgba(102, 126, 234, 0.2);
@@ -295,7 +295,7 @@
         }
 
         .pack-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(10px);
             padding: 45px 38px;
             border-radius: 24px;
@@ -418,7 +418,7 @@
         /* Key Advantages */
         .advantages {
             padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 20, 0.2);
         }
 
         .advantages-grid {
@@ -430,7 +430,7 @@
         }
 
         .advantage-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(10px);
             padding: 30px 26px;
             border-radius: 20px;
@@ -495,7 +495,7 @@
         }
 
         .stat-block {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.12);
             backdrop-filter: blur(10px);
             padding: 28px 30px;
             border-radius: 18px;
@@ -604,7 +604,7 @@
 
         .cta-button:hover {
             transform: scale(1.08);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0,0,20,0.2);
         }
 
         .cta-note {
@@ -616,7 +616,7 @@
         /* Footer */
         footer {
             padding: 50px 20px 30px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 30, 0.35);
             text-align: center;
             border-top: 1px solid rgba(102, 126, 234, 0.3);
         }
@@ -672,7 +672,7 @@
         .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
         .faq-section .section-title p { color: rgba(255,255,255,0.7); }
         .faq-wrap { max-width: 800px; margin: 0 auto; }
-        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item { background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.12); overflow: hidden; transition: border-color 0.3s; }
         .faq-item:hover { border-color: rgba(255,255,255,0.25); }
         .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
         .faq-q::after { content: "+"; font-size: 1.4em; opacity: 0.7; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
