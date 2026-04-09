@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIAPLUS — Surcomplémentaire Santé | VIASANTÉ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-amber: #F39C12;
+            --primary-orange: #E67E22;
+            --dark-bg: #0a0e27;
+            --gradient-viaplus: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
+            --gradient-viaplus-soft: linear-gradient(135deg, rgba(243,156,18,0.15) 0%, rgba(230,126,34,0.15) 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(125deg, #0a0e27, #1a0e1e, #0a0e27);
+            z-index: -2;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .bg-animation span {
+            position: absolute;
+            display: block;
+            background: rgba(243, 156, 18, 0.08);
+            animation: move 25s linear infinite;
+            bottom: -150px;
+        }
+
+        .bg-animation span:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .bg-animation span:nth-child(3) {
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 4s;
+        }
+
+        .bg-animation span:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .bg-animation span:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation span:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .bg-animation span:nth-child(7) {
+            left: 5%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 7s;
+            animation-duration: 20s;
+        }
+
+        .bg-animation span:nth-child(8) {
+            left: 55%;
+            width: 35px;
+            height: 35px;
+            animation-delay: 1s;
+            animation-duration: 15s;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+            cursor: pointer;
+        }
+
+        .logo::before {
+            content: "◆";
+            font-size: 30px;
+            margin-right: 10px;
+            transform: rotate(45deg);
+            display: inline-block;
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 130px 20px 55px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--gradient-viaplus-soft);
+            border: 1px solid rgba(243,156,18,0.4);
+            border-radius: 30px;
+            font-size: 0.95em;
+            color: #F39C12;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            animation: fadeInUp 1s ease;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15em;
+            color: rgba(255,255,255,0.7);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            padding: 50px 20px;
+            background: rgba(0,0,0,0.35);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(243,156,18,0.3);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(243,156,18,0.6);
+            box-shadow: 0 12px 30px rgba(243,156,18,0.2);
+        }
+
+        .stat-value {
+            font-size: 1.7em;
+            font-weight: 800;
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1em;
+        }
+
+        /* Explainer section */
+        .explainer {
+            padding: 80px 20px;
+        }
+
+        .explainer-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(243,156,18,0.3);
+            border-radius: 24px;
+            padding: 50px;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .tier-item {
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            padding: 30px 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .tier-item.highlighted {
+            background: var(--gradient-viaplus-soft);
+            border-color: rgba(243,156,18,0.5);
+            box-shadow: 0 8px 30px rgba(243,156,18,0.15);
+        }
+
+        .tier-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .tier-badge {
+            display: inline-block;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .tier-badge.level1 {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .tier-badge.level2 {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        .tier-badge.level3 {
+            background: var(--gradient-viaplus);
+            color: white;
+        }
+
+        .tier-icon {
+            font-size: 2.5em;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .tier-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .tier-item.highlighted .tier-title {
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tier-desc {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+
+        /* Avantages section */
+        .avantages {
+            padding: 80px 20px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .avantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 28px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .avantage-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 40px 35px;
+            border-radius: 22px;
+            border: 1px solid rgba(243,156,18,0.25);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .avantage-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-viaplus);
+        }
+
+        .avantage-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(243,156,18,0.55);
+            box-shadow: 0 20px 50px rgba(243,156,18,0.18);
+        }
+
+        .avantage-label {
+            font-size: 1.3em;
+            font-weight: 800;
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 14px;
+            letter-spacing: 0.03em;
+        }
+
+        .avantage-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 0.97em;
+        }
+
+        /* Forfaits section */
+        .forfaits {
+            padding: 80px 20px;
+        }
+
+        .forfaits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 26px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .forfait-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 35px 30px;
+            border-radius: 22px;
+            border: 1px solid rgba(230,126,34,0.25);
+            transition: all 0.3s;
+        }
+
+        .forfait-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(230,126,34,0.55);
+            box-shadow: 0 15px 40px rgba(230,126,34,0.18);
+        }
+
+        .forfait-icon {
+            font-size: 2.4em;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .forfait-title {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: #E67E22;
+            margin-bottom: 12px;
+        }
+
+        .forfait-desc {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+
+        /* Services section */
+        .services {
+            padding: 80px 20px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            padding: 28px 24px;
+            border-radius: 18px;
+            border: 1px solid rgba(243,156,18,0.22);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(243,156,18,0.48);
+            box-shadow: 0 12px 30px rgba(243,156,18,0.14);
+        }
+
+        .service-icon {
+            font-size: 2.2em;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .service-title {
+            font-size: 1em;
+            font-weight: 700;
+            color: #F39C12;
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 20px 30px;
+            background: rgba(0,0,0,0.55);
+            text-align: center;
+            border-top: 1px solid rgba(243,156,18,0.25);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 8px;
+        }
+
+        footer .legal {
+            font-size: 0.82em;
+            margin-top: 14px;
+            opacity: 0.55;
+            max-width: 860px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3em; }
+            .hero .subtitle { font-size: 1.4em; }
+            .avantages-grid, .forfaits-grid { grid-template-columns: 1fr; }
+            .explainer-card { padding: 30px 20px; }
+            .tiers-grid { grid-template-columns: 1fr; }
+        }
+
+        /* FAQ */
+        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section .section-title { text-align: center; margin-bottom: 40px; }
+        .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
+        .faq-section .section-title p { color: rgba(255,255,255,0.7); }
+        .faq-wrap { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(243,156,18,0.2); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item:hover { border-color: rgba(243,156,18,0.45); }
+        .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
+        .faq-q::after { content: "+"; font-size: 1.4em; color: #F39C12; opacity: 0.8; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+        .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
+        .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="sante.html" class="back-btn">
+                    <span>&#8592;</span>
+                    <span>Retour</span>
+                </a>
+                <div class="logo">VIASANTÉ</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Surcomplémentaire VIASANTÉ</div>
+        <h1>VIAPLUS</h1>
+        <div class="subtitle">Le PLUS qui fait la différence</div>
+        <p>La surcomplémentaire santé qui renforce votre garantie de base. Un 3ème niveau de couverture pour optimiser vos remboursements et couvrir ce que votre mutuelle ne prend pas en charge.</p>
+    </section>
+
+    <!-- Key Stats Bar -->
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-value">6,45&nbsp;€/mois</div>
+                <div class="stat-label">Dès 18 ans, formule VIAPLUS 1</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3 niveaux</div>
+                <div class="stat-label">VIAPLUS 1, 2, 3</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">5 forfaits</div>
+                <div class="stat-label">Baroudeur, Stop Tabac, Médecines Douces…</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3ème niveau</div>
+                <div class="stat-label">Après Sécu + complémentaire</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qu'est-ce qu'une surcomplémentaire ? -->
+    <section class="explainer">
+        <div class="section-title">
+            <h2>Qu'est-ce qu'une surcomplémentaire&nbsp;?</h2>
+            <p>VIAPLUS, le 3ème niveau de protection santé</p>
+        </div>
+        <div class="explainer-card">
+            <p style="color: rgba(255,255,255,0.8); font-size: 1.05em; line-height: 1.8; margin-bottom: 10px;">
+                En France, les frais de santé sont pris en charge à plusieurs niveaux. VIAPLUS s'insère comme le 3ème niveau, pour couvrir ce que la Sécurité Sociale et votre mutuelle ne remboursent pas intégralement.
+            </p>
+            <div class="tiers-grid">
+                <div class="tier-item">
+                    <span class="tier-badge level1">Niveau 1 — Base</span>
+                    <span class="tier-icon">🏛️</span>
+                    <div class="tier-title">Sécurité Sociale</div>
+                    <div class="tier-desc">Remboursement de base obligatoire. Couvre une partie des frais, souvent insuffisante sur l'optique, le dentaire ou les dépassements d'honoraires.</div>
+                </div>
+                <div class="tier-item">
+                    <span class="tier-badge level2">Niveau 2 — Intermédiaire</span>
+                    <span class="tier-icon">🤝</span>
+                    <div class="tier-title">Complémentaire</div>
+                    <div class="tier-desc">Votre mutuelle d'entreprise (contrat groupe) ou individuelle. Complète le remboursement de la Sécurité Sociale, mais laisse souvent un reste à charge.</div>
+                </div>
+                <div class="tier-item highlighted">
+                    <span class="tier-badge level3">Niveau 3 — Maximum</span>
+                    <span class="tier-icon">⭐</span>
+                    <div class="tier-title">VIAPLUS</div>
+                    <div class="tier-desc">La surcomplémentaire individuelle VIASANTÉ. Prend en charge ce que votre mutuelle ne rembourse pas, pour un reste à charge minimal.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Les 4 avantages VIAPLUS -->
+    <section class="avantages">
+        <div class="section-title">
+            <h2>Les 4 avantages VIAPLUS</h2>
+            <p>Plus de simplicité, de remboursements, de souplesse et de bien-être</p>
+        </div>
+        <div class="avantages-grid">
+            <div class="avantage-card">
+                <div class="avantage-label">+ DE SIMPLICITÉ</div>
+                <p class="avantage-desc">3 niveaux de formules pour faciliter votre choix. Montants exprimés en € pour une meilleure lisibilité de vos remboursements.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="avantage-label">+ DE REMBOURSEMENTS</div>
+                <p class="avantage-desc">Remboursements renforcés sur les postes clés (optique, soins courants, hospitalisation, dentaire) dès le niveau 1. Prise en charge des médecines douces, automédication, cryothérapie, sport sur ordonnance (ALD), forfait pathologie lourde.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="avantage-label">+ DE SOUPLESSE</div>
+                <p class="avantage-desc">À partir de 6,45&nbsp;€/mois* pour maîtriser votre budget. Possibilité de choisir les bénéficiaires de votre garantie.</p>
+            </div>
+            <div class="avantage-card">
+                <div class="avantage-label">+ DE BIEN-ÊTRE</div>
+                <p class="avantage-desc">Cures thermales mieux remboursées. Accompagnement dans votre quotidien, au travail, en voyage, ou dans les moments difficiles.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Les 5 Forfaits Spéciaux -->
+    <section class="forfaits">
+        <div class="section-title">
+            <h2>Les 5 Forfaits Spéciaux</h2>
+            <p>Des couvertures ciblées pour les besoins du quotidien et de l'extraordinaire</p>
+        </div>
+        <div class="forfaits-grid">
+            <div class="forfait-card">
+                <span class="forfait-icon">🌍</span>
+                <div class="forfait-title">Forfait Baroudeur</div>
+                <p class="forfait-desc">Vaccins prescrits non remboursés par le Régime Obligatoire pour vos voyages : antipaludéens, typhoïde, fièvre jaune…</p>
+            </div>
+            <div class="forfait-card">
+                <span class="forfait-icon">🚬</span>
+                <div class="forfait-title">Forfait Stop Tabac</div>
+                <p class="forfait-desc">Aide au sevrage tabagique : compléments alimentaires, inhaleurs et consultations de tabacologie non prises en charge par le RO.</p>
+            </div>
+            <div class="forfait-card">
+                <span class="forfait-icon">🧘</span>
+                <div class="forfait-title">Forfait Médecines Douces</div>
+                <p class="forfait-desc">Cryothérapie (anti-douleur, sommeil, récupération), ostéopathe, sophrologue, nutritionniste, mésothérapeute, psychologue…</p>
+            </div>
+            <div class="forfait-card">
+                <span class="forfait-icon">💊</span>
+                <div class="forfait-title">Forfait Pathologie Lourde</div>
+                <p class="forfait-desc">Participation aux frais de prothèses et soins esthétiques pour traverser plus sereinement les moments difficiles.</p>
+            </div>
+            <div class="forfait-card">
+                <span class="forfait-icon">🏃</span>
+                <div class="forfait-title">Forfait Sport sur Ordonnance</div>
+                <p class="forfait-desc">Financement de l'activité physique prescrite dans le cadre d'une affection de longue durée (ALD).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services inclus -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Services inclus</h2>
+            <p>Tous les outils pour gérer votre santé simplement</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-item">
+                <span class="service-icon">📱</span>
+                <div class="service-title">Appli mobile VIASANTÉ Mutuelle</div>
+                <div class="service-desc">Disponible sur Google Play et Apple Store. Gérez vos remboursements, consultez vos garanties et accédez à votre espace adhérent en mobilité.</div>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">💻</span>
+                <div class="service-title">Espace adhérent viasante.fr</div>
+                <div class="service-desc">Remboursements 24h/24, carte tiers payant digitalisée, simulation et devis en ligne, accessible à tout moment.</div>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🏥</span>
+                <div class="service-title">Tiers payant &amp; réseau de soins</div>
+                <div class="service-desc">Tiers payant Almerys pour une avance de frais évitée. Réseau de soins Itelis pour bénéficier de tarifs négociés chez de nombreux professionnels de santé.</div>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">📍</span>
+                <div class="service-title">Réseau d'agences de proximité</div>
+                <div class="service-desc">Des agences VIASANTÉ partout en France pour vous accompagner en face à face, quel que soit votre besoin ou votre situation.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="section-title">
+            <h2>Questions Fréquentes</h2>
+            <p>Tout ce que vous devez savoir sur VIAPLUS</p>
+        </div>
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <div class="faq-q">Qu'est-ce qu'une surcomplémentaire santé ?</div>
+                <div class="faq-a">Une surcomplémentaire est un 3ème niveau de couverture santé, qui vient après la Sécurité Sociale et votre complémentaire de base. VIAPLUS complète votre garantie existante (contrat groupe obligatoire ou individuel) pour optimiser vos remboursements sur les postes les moins bien couverts.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Dois-je déjà avoir une mutuelle pour souscrire VIAPLUS ?</div>
+                <div class="faq-a">Oui. VIAPLUS est une surcomplémentaire : elle vient en complément d'une complémentaire santé existante (mutuelle d'entreprise ou individuelle). Elle ne peut pas remplacer votre mutuelle.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Quel est le tarif minimum ?</div>
+                <div class="faq-a">VIAPLUS démarre à partir de 6,45&nbsp;€/mois* pour un adulte de 18 ans relevant du régime général avec la formule VIAPLUS 1. *Tarif 2023 donné à titre indicatif pour un assuré résidant dans le 66.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Les 5 forfaits sont-ils tous inclus ?</div>
+                <div class="faq-a">Les 5 forfaits spéciaux (Baroudeur, Stop Tabac, Médecines Douces, Pathologie Lourde, Sport sur Ordonnance) sont disponibles selon le niveau de formule choisi. Renseignez-vous auprès de votre conseiller VIASANTÉ pour connaître l'étendue des garanties selon votre niveau.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Puis-je choisir qui bénéficie de ma garantie VIAPLUS ?</div>
+                <div class="faq-a">Oui, VIAPLUS vous permet de choisir les bénéficiaires de votre garantie (vous seul, vous + conjoint, vous + enfants, formule famille), pour adapter la couverture à votre situation familiale.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 VIASANTÉ Mutuelle — Membre d'AG2R LA MONDIALE</p>
+        <p>VIASANTÉ Mutuelle, mutuelle soumise aux dispositions du Livre II du Code de la Mutualité — SIREN 777 927 120</p>
+        <p class="legal">*Tarif 2023 donné à titre indicatif pour un adulte de 18 ans, régime général, département 66, formule VIAPLUS 1. Les remboursements sont exprimés dans la limite des frais engagés.</p>
+    </footer>
+
+    <script>
+        // Scroll-triggered fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.avantage-card, .forfait-card, .stat-item, .service-item, .tier-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.faq-q').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
