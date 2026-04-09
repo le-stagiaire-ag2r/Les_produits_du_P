@@ -127,6 +127,31 @@
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-4px);
+        }
+
         .logo {
             display: flex;
             align-items: center;
@@ -142,43 +167,6 @@
             50% { opacity: 0.8; }
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #00C9FF, #92FE9D);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
 
         /* Hero Section */
         .hero {
@@ -657,51 +645,8 @@
             transform: scale(1.1);
         }
 
-        /* Loading Animation */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0e27;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(0, 201, 255, 0.3);
-            border-top: 4px solid #00C9FF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
             .hero h1 {
                 font-size: 2em;
             }
@@ -734,11 +679,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
-    </div>
-
     <!-- Animated Background -->
     <div class="bg-animation">
         <span></span>
@@ -752,15 +692,10 @@
     <!-- Header -->
     <header id="header">
         <nav>
-            <div class="logo">AG2R LA MONDIALE</div>
-            <ul class="nav-links">
-                <li><a href="#features">Caractéristiques</a></li>
-                <li><a href="#investment">Investissement</a></li>
-                <li><a href="#remuneration">Rémunération</a></li>
-                <li><a href="#process">Processus</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <button class="mobile-menu" id="mobile-menu">☰</button>
+            <div class="nav-left">
+                <a href="epargne.html" class="back-btn">← Retour</a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
         </nav>
     </header>
 
@@ -771,8 +706,8 @@
         
         <div class="hero-features">
             <div class="hero-feature">
-                <div class="feature-number">4%</div>
-                <div>Rémunération 2023</div>
+                <div class="feature-number">Variable</div>
+                <div>Rémunération votée en AG</div>
             </div>
             <div class="hero-feature">
                 <div class="feature-number">10€</div>
@@ -867,9 +802,9 @@
             <p class="section-subtitle">Des performances solides année après année</p>
             
             <div class="remuneration-card">
-                <h3>Rémunération 2023</h3>
-                <div class="remuneration-highlight">4,00%</div>
-                <p>Votée par l'Assemblée Générale du 16 mai 2024</p>
+                <h3>Rémunération variable</h3>
+                <div class="remuneration-highlight">Variable</div>
+                <p>Rémunération variable fixée annuellement par l'Assemblée Générale</p>
                 <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
                     La rémunération est variable et plafonnée, fixée annuellement par l'AG sur la base des résultats de la SGAM AG2R LA MONDIALE
                 </p>
@@ -991,13 +926,6 @@
     <button class="scroll-top" id="scrollTop">↑</button>
 
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-            }, 1000);
-        });
-
         // Smooth scrolling for navigation
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
@@ -1009,15 +937,6 @@
                 });
             }
         }
-
-        // Add click events to navigation links
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const sectionId = this.getAttribute('href').substring(1);
-                scrollToSection(sectionId);
-            });
-        });
 
         // Header scroll effect
         const header = document.getElementById('header');
@@ -1089,69 +1008,6 @@
         document.querySelectorAll('.feature-card, .process-step').forEach(el => {
             observer.observe(el);
         });
-
-        // Mobile menu toggle (basic implementation)
-        const mobileMenuBtn = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = 'rgba(0, 0, 0, 0.9)';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.padding = '20px';
-                navLinks.style.zIndex = '1000';
-            }
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    navLinks.style.display = 'none';
-                }
-            });
-        });
-
-        // Animate numbers in hero features
-        function animateNumber(element, start, end, duration) {
-            let startTime = null;
-            const step = (timestamp) => {
-                if (!startTime) startTime = timestamp;
-                const progress = Math.min((timestamp - startTime) / duration, 1);
-                const current = Math.floor(progress * (end - start) + start);
-                element.textContent = current + (element.textContent.includes('%') ? '%' : element.textContent.includes('€') ? '€' : '');
-                if (progress < 1) {
-                    requestAnimationFrame(step);
-                }
-            };
-            requestAnimationFrame(step);
-        }
-
-        // Trigger number animation when hero is visible
-        const heroObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const numberElements = document.querySelectorAll('.feature-number');
-                    setTimeout(() => {
-                        animateNumber(numberElements[0], 0, 4, 2000); // 4%
-                    }, 500);
-                    setTimeout(() => {
-                        animateNumber(numberElements[1], 0, 10, 2000); // 10€
-                    }, 800);
-                    setTimeout(() => {
-                        animateNumber(numberElements[2], 0, 500, 2000); // 500€
-                    }, 1100);
-                    heroObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        heroObserver.observe(document.querySelector('.hero'));
 
         // Add hover effects to detail items
         document.querySelectorAll('.detail-item').forEach(item => {
@@ -1238,10 +1094,6 @@
         // Keyboard navigation support
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                // Close mobile menu if open
-                if (navLinks.style.display === 'flex') {
-                    navLinks.style.display = 'none';
-                }
                 // Close any open FAQ
                 document.querySelectorAll('.faq-item.active').forEach(item => {
                     item.classList.remove('active');
