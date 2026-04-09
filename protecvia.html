@@ -623,6 +623,65 @@
         .faq-item.open .faq-q::after { transform: rotate(45deg); }
         .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
         .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
+
+        /* Documents Section */
+        .docs-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 20, 0.2);
+        }
+        .docs-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .docs-section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            background: var(--gradient-health);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .doc-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            gap: 14px;
+        }
+        .doc-card:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        .doc-icon { font-size: 2.5em; }
+        .doc-name {
+            font-size: 0.95em;
+            font-weight: 600;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .doc-dl {
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+        }
+        .doc-card:hover .doc-dl { background: rgba(255, 255, 255, 0.28); }
     </style>
 </head>
 <body>
@@ -1019,6 +1078,50 @@
             <div class="faq-item">
                 <div class="faq-q">La téléconsultation est-elle vraiment incluse gratuitement ?</div>
                 <div class="faq-a">Oui, la téléconsultation médicale avec des généralistes et spécialistes est disponible 24h/24, 7j/7, sans surcoût, pour tous les niveaux PROTECVIA. Elle est accessible via l'application VIASANTÉ Mutuelle ou l'espace adhérent.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents à télécharger -->
+    <section class="docs-section">
+        <div class="docs-wrap">
+            <h3 class="docs-section-title">📂 Documents à télécharger</h3>
+            <div class="docs-grid">
+                <a href="14_e64dcded1b9e7_PROTECVIA-PLAQUETTE-COMMERCIALE-D.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">PROTECVIA — Plaquette commerciale</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="14_1a3ae6791a183_5_ProtecVia%20fiche%20Pack%20Liberte%20-%20Plaquette%2020190725.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">PROTECVIA — Fiche Pack Liberté</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="14_a30c0de0e0387_51_ProtecVia%20fiche%20Pack%20Confort%20-%20Plaquette%2020190725.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">PROTECVIA — Fiche Pack Confort</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="Teleconsultation%20-%20plaquette.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">Téléconsultation — Plaquette</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="207_a41138d67047f_PremierJour_Depliant-ALM_20241121.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">Premier Jour — Dépliant</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="70_FlyerSAM-Particulier-Web_20240319.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">SAM Particulier — Flyer</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="95_00006613-230320-01%20v1.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">Document complémentaire</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
             </div>
         </div>
     </section>

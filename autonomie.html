@@ -679,6 +679,65 @@
         .faq-item.open .faq-q::after { transform: rotate(45deg); }
         .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
         .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
+
+        /* Documents Section */
+        .docs-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 20, 0.2);
+        }
+        .docs-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .docs-section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            background: var(--gradient-auto);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .doc-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            gap: 14px;
+        }
+        .doc-card:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        .doc-icon { font-size: 2.5em; }
+        .doc-name {
+            font-size: 0.95em;
+            font-weight: 600;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .doc-dl {
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+        }
+        .doc-card:hover .doc-dl { background: rgba(255, 255, 255, 0.28); }
     </style>
 </head>
 <body>
@@ -935,6 +994,30 @@
             <div class="faq-item">
                 <div class="faq-q">Ma famille peut-elle bénéficier d'une réduction ?</div>
                 <div class="faq-a">Oui, votre conjoint ou partenaire de PACS bénéficie automatiquement d'une réduction de 20% sur sa cotisation. La couverture compte aujourd'hui plus de 260 000 assurés.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents à télécharger -->
+    <section class="docs-section">
+        <div class="docs-wrap">
+            <h3 class="docs-section-title">📂 Documents à télécharger</h3>
+            <div class="docs-grid">
+                <a href="26_Plaquette%20commerciale%20Assurance%20Autonomie.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">Plaquette commerciale — Assurance Autonomie</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="29_0189f659cdd04_20220613%20Dir%20mkg%20client%20PLV%20assurance%20autonomie%2000001219-220531-01_rvb.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">PLV — Assurance Autonomie</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
+                <a href="94-2021%2010%2005%20dir%20mkt%20clients%20Guide%20conseils%20d%C3%A9pendance%20d%C3%A9pliant%20072021-97782_version%20web.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">Guide conseils dépendance</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
             </div>
         </div>
     </section>
