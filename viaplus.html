@@ -604,6 +604,65 @@
         .faq-item.open .faq-q::after { transform: rotate(45deg); }
         .faq-a { padding: 0 25px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; color: rgba(255,255,255,0.8); line-height: 1.7; font-size: 0.95em; }
         .faq-item.open .faq-a { padding: 0 25px 22px; max-height: 400px; }
+
+        /* Documents Section */
+        .docs-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 20, 0.2);
+        }
+        .docs-wrap {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .docs-section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            background: var(--gradient-viaplus);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .doc-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            gap: 14px;
+        }
+        .doc-card:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        .doc-icon { font-size: 2.5em; }
+        .doc-name {
+            font-size: 0.95em;
+            font-weight: 600;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .doc-dl {
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
+        }
+        .doc-card:hover .doc-dl { background: rgba(255, 255, 255, 0.28); }
     </style>
 </head>
 <body>
@@ -812,6 +871,20 @@
             <div class="faq-item">
                 <div class="faq-q">Puis-je choisir qui bénéficie de ma garantie VIAPLUS ?</div>
                 <div class="faq-a">Oui, VIAPLUS vous permet de choisir les bénéficiaires de votre garantie (vous seul, vous + conjoint, vous + enfants, formule famille), pour adapter la couverture à votre situation familiale.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documents à télécharger -->
+    <section class="docs-section">
+        <div class="docs-wrap">
+            <h3 class="docs-section-title">📂 Documents à télécharger</h3>
+            <div class="docs-grid">
+                <a href="14_0f345ce0612f5_VS-VIAPLUS-ALM_20220428_Demat.pdf" download target="_blank" class="doc-card">
+                    <span class="doc-icon">📄</span>
+                    <span class="doc-name">VIAPLUS — Brochure commerciale</span>
+                    <span class="doc-dl">↓ Télécharger</span>
+                </a>
             </div>
         </div>
     </section>
