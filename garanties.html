@@ -173,6 +173,31 @@
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            font-size: 0.9em;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(-4px);
+        }
+
         .logo {
             display: flex;
             align-items: center;
@@ -678,7 +703,10 @@
     <!-- Header -->
     <header>
         <nav>
-            <div class="logo">AG2R LA MONDIALE</div>
+            <div class="nav-left">
+                <a href="prevoyance.html" class="back-btn">← Retour</a>
+                <div class="logo">AG2R LA MONDIALE</div>
+            </div>
             <ul>
                 <li><a href="#home">Accueil</a></li>
                 <li><a href="#stats">Chiffres clés</a></li>
