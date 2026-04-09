@@ -14,9 +14,9 @@
         :root {
             --primary-amber: #F39C12;
             --primary-orange: #E67E22;
-            --dark-bg: #0a0e27;
+            --dark-bg: #0d2260;
             --gradient-viaplus: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
-            --gradient-viaplus-soft: linear-gradient(135deg, rgba(243,156,18,0.15) 0%, rgba(230,126,34,0.15) 100%);
+            --gradient-viaplus-soft: linear-gradient(135deg, rgba(243,156,18,0.28) 0%, rgba(230,126,34,0.15) 100%);
         }
 
         body {
@@ -35,7 +35,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(125deg, #0a0e27, #1a0e1e, #0a0e27);
+            background: linear-gradient(125deg, #0d2260, #1a0e1e, #0d2260);
             z-index: -2;
         }
 
@@ -52,7 +52,7 @@
         .bg-animation span {
             position: absolute;
             display: block;
-            background: rgba(243, 156, 18, 0.08);
+            background: rgba(243, 156, 18, 0.2);
             animation: move 25s linear infinite;
             bottom: -150px;
         }
@@ -132,7 +132,7 @@
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 20, 0.2);
             backdrop-filter: blur(10px);
             padding: 20px 0;
             position: fixed;
@@ -253,7 +253,7 @@
         /* Stats Bar */
         .stats-bar {
             padding: 50px 20px;
-            background: rgba(0,0,0,0.35);
+            background: rgba(0, 0, 20, 0.22);
         }
 
         .stats-grid {
@@ -265,7 +265,7 @@
         }
 
         .stat-item {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(243,156,18,0.3);
             border-radius: 16px;
@@ -321,7 +321,7 @@
         .explainer-card {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(243,156,18,0.3);
             border-radius: 24px;
@@ -348,7 +348,7 @@
         .tier-item.highlighted {
             background: var(--gradient-viaplus-soft);
             border-color: rgba(243,156,18,0.5);
-            box-shadow: 0 8px 30px rgba(243,156,18,0.15);
+            box-shadow: 0 8px 30px rgba(243,156,18,0.28);
         }
 
         .tier-item:hover {
@@ -421,7 +421,7 @@
         }
 
         .avantage-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             padding: 40px 35px;
             border-radius: 22px;
@@ -477,7 +477,7 @@
         }
 
         .forfait-card {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             padding: 35px 30px;
             border-radius: 22px;
@@ -525,7 +525,7 @@
         }
 
         .service-item {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.12);
             backdrop-filter: blur(10px);
             padding: 28px 24px;
             border-radius: 18px;
@@ -562,7 +562,7 @@
         /* Footer */
         footer {
             padding: 50px 20px 30px;
-            background: rgba(0,0,0,0.55);
+            background: rgba(0, 0, 30, 0.45);
             text-align: center;
             border-top: 1px solid rgba(243,156,18,0.25);
         }
@@ -592,12 +592,12 @@
         }
 
         /* FAQ */
-        .faq-section { padding: 60px 20px; background: rgba(0,0,0,0.25); }
+        .faq-section { padding: 60px 20px; background: rgba(0, 0, 20, 0.2); }
         .faq-section .section-title { text-align: center; margin-bottom: 40px; }
         .faq-section .section-title h2 { font-size: 2em; margin-bottom: 10px; }
         .faq-section .section-title p { color: rgba(255,255,255,0.7); }
         .faq-wrap { max-width: 800px; margin: 0 auto; }
-        .faq-item { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(243,156,18,0.2); overflow: hidden; transition: border-color 0.3s; }
+        .faq-item { background: rgba(255,255,255,0.12); backdrop-filter: blur(10px); margin-bottom: 14px; border-radius: 14px; border: 1px solid rgba(243,156,18,0.2); overflow: hidden; transition: border-color 0.3s; }
         .faq-item:hover { border-color: rgba(243,156,18,0.45); }
         .faq-q { padding: 22px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 1.05em; }
         .faq-q::after { content: "+"; font-size: 1.4em; color: #F39C12; opacity: 0.8; transition: transform 0.3s; flex-shrink: 0; margin-left: 15px; }
