@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assurance Autonomie - Dépendance | AG2R LA MONDIALE</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <style>
         * {
             margin: 0;
@@ -738,6 +739,30 @@
             color: white;
         }
         .doc-card:hover .doc-dl { background: rgba(255, 255, 255, 0.28); }
+        /* Quiz */
+        .quiz-section { padding: 60px 20px; background: rgba(0,0,20,0.2); }
+        .quiz-wrap { max-width: 700px; margin: 0 auto; }
+        .quiz-title { text-align: center; font-size: 2em; margin-bottom: 40px; background: var(--gradient-auto); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .quiz-progress { text-align: right; color: rgba(255,255,255,0.5); font-size: 0.9em; margin-bottom: 15px; }
+        .quiz-question { font-size: 1.15em; font-weight: 600; color: white; margin-bottom: 25px; line-height: 1.5; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        @media (max-width: 600px) { .quiz-options { grid-template-columns: 1fr; } }
+        .quiz-opt { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px 18px; color: white; cursor: pointer; font-size: 0.95em; transition: all 0.2s; text-align: left; }
+        .quiz-opt:hover:not(:disabled) { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.4); }
+        .quiz-opt.correct { background: rgba(0,200,100,0.2); border-color: #00C864; color: #92FE9D; }
+        .quiz-opt.wrong { background: rgba(255,80,80,0.2); border-color: #FF5050; color: #FF8080; }
+        .quiz-opt:disabled { cursor: default; }
+        .quiz-feedback { min-height: 45px; font-size: 0.92em; line-height: 1.5; padding: 8px 0; }
+        .quiz-next { background: var(--gradient-auto); color: white; border: none; padding: 12px 28px; border-radius: 25px; font-size: 1em; font-weight: bold; cursor: pointer; transition: all 0.3s; display: none; margin-top: 5px; }
+        .quiz-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .quiz-result { text-align: center; padding: 40px 20px; display: none; }
+        .result-score { font-size: 3.5em; font-weight: bold; color: white; margin-bottom: 15px; }
+        .result-label { font-size: 1.1em; color: rgba(255,255,255,0.75); margin-bottom: 30px; }
+        .quiz-restart { background: var(--gradient-auto); color: white; border: none; padding: 14px 32px; border-radius: 25px; font-size: 1em; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+        .quiz-restart:hover { transform: translateY(-2px); }
+        html { scroll-behavior: smooth; }
+        #btn-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 1.4em; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 998; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+        #btn-top:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); }
     </style>
 </head>
 <body>
@@ -998,6 +1023,25 @@
         </div>
     </section>
 
+    <!-- Quiz de connaissances -->
+    <section class="quiz-section">
+        <div class="quiz-wrap">
+            <h3 class="quiz-title">🎯 Quiz de connaissances</h3>
+            <div id="quiz-container">
+                <div class="quiz-progress">Question <span id="quiz-num">1</span> / 5</div>
+                <p class="quiz-question" id="quiz-q"></p>
+                <div class="quiz-options" id="quiz-opts"></div>
+                <p class="quiz-feedback" id="quiz-fb"></p>
+                <button class="quiz-next" id="quiz-next"></button>
+            </div>
+            <div class="quiz-result" id="quiz-result">
+                <div class="result-score" id="quiz-score"></div>
+                <p class="result-label" id="quiz-label"></p>
+                <button class="quiz-restart" onclick="startQuiz()">🔄 Recommencer</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Documents à télécharger -->
     <section class="docs-section">
         <div class="docs-wrap">
@@ -1063,6 +1107,23 @@
                 item.classList.toggle('open');
             });
         });
+    </script>
+    <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
+    <script>
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        const QUIZ=[
+            {q:"Quel événement déclenche le versement des prestations de l'assurance autonomie ?",opts:["Une hospitalisation longue durée","Un accident corporel","La perte d'autonomie / la dépendance","L'atteinte d'un certain âge"],correct:2,expl:"Les prestations sont déclenchées par la reconnaissance d'un état de perte d'autonomie, évalué selon des critères précis (grille AGGIR)."},
+            {q:"Sous quelle forme sont généralement versées les prestations autonomie ?",opts:["Un capital unique","Une rente mensuelle","Des bons de réduction","Un remboursement de frais sur facture"],correct:1,expl:"L'assurance autonomie verse une rente mensuelle pour aider à financer la prise en charge au quotidien."},
+            {q:"La couverture autonomie est-elle viagère (valable à vie) ?",opts:["Non, elle s'arrête à 80 ans","Oui, c'est une garantie viagère","Seulement pendant 10 ans","Jusqu'à la retraite uniquement"],correct:1,expl:"C'est une garantie viagère : les prestations sont versées jusqu'au décès de l'assuré."},
+            {q:"La rente autonomie est-elle cumulable avec l'APA (Allocation Personnalisée d'Autonomie) ?",opts:["Non, elle remplace l'APA","Oui, elle est cumulable avec l'APA","Seulement en dépendance totale","Après un délai de carence de 3 ans"],correct:1,expl:"La rente autonomie est cumulable avec l'APA versée par le Conseil Départemental, ce qui améliore la couverture globale."},
+            {q:"Quel outil d'évaluation détermine le niveau de dépendance en France ?",opts:["L'échelle ADL","La grille AGGIR","Le score GIR médical","Le barème COTOREP"],correct:1,expl:"La grille AGGIR (Autonomie Gérontologie Groupes Iso-Ressources) évalue la perte d'autonomie de GIR 1 (dépendance totale) à GIR 6 (autonomie)."}
+        ];
+        let qIdx=0,qScore=0;
+        function startQuiz(){qIdx=0;qScore=0;document.getElementById('quiz-container').style.display='block';document.getElementById('quiz-result').style.display='none';showQ();}
+        function showQ(){const d=QUIZ[qIdx];document.getElementById('quiz-num').textContent=qIdx+1;document.getElementById('quiz-q').textContent=d.q;const opts=document.getElementById('quiz-opts');opts.innerHTML='';d.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='quiz-opt';b.textContent=o;b.onclick=()=>answer(i);opts.appendChild(b);});document.getElementById('quiz-fb').textContent='';document.getElementById('quiz-next').style.display='none';}
+        function answer(sel){const d=QUIZ[qIdx];const btns=document.querySelectorAll('.quiz-opt');btns.forEach(b=>b.disabled=true);const fb=document.getElementById('quiz-fb');if(sel===d.correct){btns[sel].classList.add('correct');fb.textContent='✓ Correct !';fb.style.color='#92FE9D';qScore++;}else{btns[sel].classList.add('wrong');btns[d.correct].classList.add('correct');fb.textContent='✗ '+d.expl;fb.style.color='#FF8080';}const nxt=document.getElementById('quiz-next');nxt.style.display='inline-block';nxt.textContent=qIdx<QUIZ.length-1?'Question suivante →':'Voir mon score';nxt.onclick=()=>{qIdx++;qIdx<QUIZ.length?showQ():showResult();};}
+        function showResult(){document.getElementById('quiz-container').style.display='none';const res=document.getElementById('quiz-result');res.style.display='block';document.getElementById('quiz-score').textContent=qScore+'/5';const labels=['À retravailler — relisez la fiche produit.','À retravailler — relisez la fiche produit.','Des lacunes — quelques points clés à revoir.','Bien ! Quelques détails à consolider.','Très bien ! Maîtrise solide du produit.','Parfait ! Vous maîtrisez ce produit à 100 %.'];document.getElementById('quiz-label').textContent=labels[qScore];}
+        startQuiz();
     </script>
 </body>
 </html>

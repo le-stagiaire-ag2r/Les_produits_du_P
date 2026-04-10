@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <title>Épargne - AG2R La Mondiale</title>
     <style>
+        html { scroll-behavior: smooth; }
+        #btn-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 1.4em; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 998; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+        #btn-top:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); }
         * {
             margin: 0;
             padding: 0;
@@ -646,5 +650,7 @@
             observer.observe(el);
         });
     </script>
+    <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
+    <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});</script>
 </body>
 </html>
