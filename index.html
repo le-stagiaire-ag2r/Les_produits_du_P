@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <title>AG2R La Mondiale - Solutions d'Assurance</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        html { scroll-behavior: smooth; }
+        #btn-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 1.4em; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 998; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+        #btn-top:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-blue: #0066CC;
-            --secondary-blue: #004499;
-            --accent-purple: #764ba2;
-            --accent-green: #92FE9D;
-            --accent-orange: #ff6b6b;
-            --dark-bg: #0d2260;
+            --primary-blue: #0066CC; --secondary-blue: #004499; --accent-purple: #764ba2;
+            --accent-green: #92FE9D; --accent-orange: #ff6b6b; --dark-bg: #0d2260;
             --card-bg: rgba(255, 255, 255, 0.12);
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #0066CC 0%, #00A8E8 100%);
@@ -26,638 +21,122 @@
             --gradient-savings: linear-gradient(135deg, #48dbfb 0%, #0abde3 100%);
             --gradient-protection: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #fff;
-            background: var(--dark-bg);
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(125deg, #0d2260, #1b3a7a, #0d2260);
-            z-index: -2;
-        }
-
-        .bg-animation {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-            top: 0;
-            left: 0;
-        }
-
-        .bg-animation span {
-            position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: rgba(102, 126, 234, 0.1);
-            animation: move 25s linear infinite;
-            bottom: -150px;
-        }
-
-        .bg-animation span:nth-child(1) {
-            left: 25%;
-            width: 80px;
-            height: 80px;
-            animation-delay: 0s;
-            background: rgba(255, 107, 107, 0.1);
-        }
-
-        .bg-animation span:nth-child(2) {
-            left: 10%;
-            width: 20px;
-            height: 20px;
-            animation-delay: 2s;
-            animation-duration: 12s;
-            background: rgba(72, 219, 251, 0.1);
-        }
-
-        .bg-animation span:nth-child(3) {
-            left: 70%;
-            width: 120px;
-            height: 120px;
-            animation-delay: 4s;
-            background: rgba(118, 75, 162, 0.1);
-        }
-
-        .bg-animation span:nth-child(4) {
-            left: 40%;
-            width: 60px;
-            height: 60px;
-            animation-delay: 0s;
-            animation-duration: 18s;
-            background: rgba(0, 168, 232, 0.1);
-        }
-
-        .bg-animation span:nth-child(5) {
-            left: 65%;
-            width: 20px;
-            height: 20px;
-            animation-delay: 0s;
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        .bg-animation span:nth-child(6) {
-            left: 75%;
-            width: 110px;
-            height: 110px;
-            animation-delay: 3s;
-            background: rgba(146, 254, 157, 0.1);
-        }
-
-        .bg-animation span:nth-child(7) {
-            left: 35%;
-            width: 150px;
-            height: 150px;
-            animation-delay: 7s;
-            background: rgba(254, 202, 87, 0.1);
-        }
-
-        .bg-animation span:nth-child(8) {
-            left: 50%;
-            width: 25px;
-            height: 25px;
-            animation-delay: 15s;
-            animation-duration: 45s;
-            background: rgba(255, 107, 107, 0.1);
-        }
-
-        @keyframes move {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-                border-radius: 0;
-            }
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
-        }
-
-        /* Header */
-        header {
-            background: rgba(15, 35, 90, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .logo::before {
-            content: "◆";
-            font-size: 30px;
-            margin-right: 10px;
-            transform: rotate(45deg);
-            display: inline-block;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: rotate(45deg) scale(1); }
-            50% { transform: rotate(45deg) scale(1.1); }
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 180px 20px 100px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 4em;
-            background: linear-gradient(135deg, #fff 0%, #667eea 50%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            animation: glow 3s ease-in-out infinite alternate, fadeInUp 1s ease;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
-            to { filter: drop-shadow(0 0 30px rgba(118, 75, 162, 0.8)); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero p {
-            font-size: 1.4em;
-            color: rgba(255,255,255,0.8);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        /* Main Categories */
-        .categories {
-            padding: 80px 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5em;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.2em;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .category-card {
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-            display: block;
-            min-height: 400px;
-        }
-
-        .category-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            transition: height 0.3s ease;
-        }
-
-        .category-card.health::before {
-            background: var(--gradient-health);
-        }
-
-        .category-card.savings::before {
-            background: var(--gradient-savings);
-        }
-
-        .category-card.protection::before {
-            background: var(--gradient-protection);
-        }
-
-        .category-card:hover::before {
-            height: 100%;
-            opacity: 0.1;
-        }
-
-        .category-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .category-card.health:hover {
-            border-color: #ff6b6b;
-            box-shadow: 0 30px 60px rgba(255, 107, 107, 0.3);
-        }
-
-        .category-card.savings:hover {
-            border-color: #48dbfb;
-            box-shadow: 0 30px 60px rgba(72, 219, 251, 0.3);
-        }
-
-        .category-card.protection:hover {
-            border-color: #667eea;
-            box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
-        }
-
-        .category-icon {
-            font-size: 4em;
-            margin-bottom: 30px;
-            display: inline-block;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .category-card:nth-child(2) .category-icon {
-            animation-delay: 0.5s;
-        }
-
-        .category-card:nth-child(3) .category-icon {
-            animation-delay: 1s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .category-title {
-            font-size: 2em;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .category-card.health .category-title {
-            background: var(--gradient-health);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .category-card.savings .category-title {
-            background: var(--gradient-savings);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .category-card.protection .category-title {
-            background: var(--gradient-protection);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .category-description {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 30px;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        .product-count {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 20px;
-        }
-
-        .category-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: auto;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: gap 0.3s;
-        }
-
-        .category-card:hover .category-cta {
-            gap: 20px;
-        }
-
-        .arrow {
-            transition: transform 0.3s;
-        }
-
-        .category-card:hover .arrow {
-            transform: translateX(10px);
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 80px 20px;
-            background: rgba(15, 35, 90, 0.3);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-
-        .stat-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 3em;
-            font-weight: bold;
-            background: var(--gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.1em;
-        }
-
-        /* Footer */
-        footer {
-            padding: 50px 20px 30px;
-            background: rgba(0, 0, 30, 0.35);
-            text-align: center;
-            border-top: 1px solid rgba(102, 126, 234, 0.3);
-            margin-top: 100px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #92FE9D;
-        }
-
-        .footer-bottom {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .category-card {
-                min-height: auto;
-            }
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #fff; background: var(--dark-bg); overflow-x: hidden; min-height: 100vh; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(125deg, #0d2260, #1b3a7a, #0d2260); z-index: -2; }
+        .bg-animation { position: fixed; width: 100%; height: 100%; overflow: hidden; z-index: -1; top: 0; left: 0; }
+        .bg-animation span { position: absolute; display: block; width: 20px; height: 20px; background: rgba(102, 126, 234, 0.1); animation: move 25s linear infinite; bottom: -150px; }
+        .bg-animation span:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; background: rgba(255, 107, 107, 0.1); }
+        .bg-animation span:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; background: rgba(72, 219, 251, 0.1); }
+        .bg-animation span:nth-child(3) { left: 70%; width: 120px; height: 120px; animation-delay: 4s; background: rgba(118, 75, 162, 0.1); }
+        .bg-animation span:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; background: rgba(0, 168, 232, 0.1); }
+        .bg-animation span:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; background: rgba(102, 126, 234, 0.1); }
+        .bg-animation span:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; background: rgba(146, 254, 157, 0.1); }
+        .bg-animation span:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; background: rgba(254, 202, 87, 0.1); }
+        .bg-animation span:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; background: rgba(255, 107, 107, 0.1); }
+        @keyframes move { 0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; } 100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; } }
+        header { background: rgba(15, 35, 90, 0.3); backdrop-filter: blur(10px); padding: 20px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        nav { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; color: white; font-size: 24px; font-weight: bold; text-shadow: 0 0 20px rgba(102, 126, 234, 0.5); cursor: pointer; transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.05); }
+        .logo::before { content: "◆"; font-size: 30px; margin-right: 10px; transform: rotate(45deg); display: inline-block; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: rotate(45deg) scale(1); } 50% { transform: rotate(45deg) scale(1.1); } }
+        .hero { padding: 180px 20px 100px; text-align: center; position: relative; }
+        .hero h1 { font-size: 4em; background: linear-gradient(135deg, #fff 0%, #667eea 50%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; animation: glow 3s ease-in-out infinite alternate, fadeInUp 1s ease; }
+        @keyframes glow { from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); } to { filter: drop-shadow(0 0 30px rgba(118, 75, 162, 0.8)); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero p { font-size: 1.4em; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 40px; animation: fadeInUp 1s ease 0.2s both; }
+        .categories { padding: 80px 20px; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5em; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; }
+        .section-title p { color: rgba(255,255,255,0.7); font-size: 1.2em; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .category-card { background: rgba(255, 255, 255, 0.12); backdrop-filter: blur(10px); border-radius: 30px; padding: 50px 40px; border: 1px solid rgba(102, 126, 234, 0.3); position: relative; overflow: hidden; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: white; display: block; min-height: 400px; }
+        .category-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px; transition: height 0.3s ease; }
+        .category-card.health::before { background: var(--gradient-health); }
+        .category-card.savings::before { background: var(--gradient-savings); }
+        .category-card.protection::before { background: var(--gradient-protection); }
+        .category-card:hover::before { height: 100%; opacity: 0.1; }
+        .category-card:hover { transform: translateY(-15px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+        .category-card.health:hover { border-color: #ff6b6b; box-shadow: 0 30px 60px rgba(255, 107, 107, 0.3); }
+        .category-card.savings:hover { border-color: #48dbfb; box-shadow: 0 30px 60px rgba(72, 219, 251, 0.3); }
+        .category-card.protection:hover { border-color: #667eea; box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3); }
+        .category-icon { font-size: 4em; margin-bottom: 30px; display: inline-block; animation: float 4s ease-in-out infinite; }
+        .category-card:nth-child(2) .category-icon { animation-delay: 0.5s; }
+        .category-card:nth-child(3) .category-icon { animation-delay: 1s; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+        .category-title { font-size: 2em; margin-bottom: 20px; font-weight: bold; }
+        .category-card.health .category-title { background: var(--gradient-health); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .category-card.savings .category-title { background: var(--gradient-savings); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .category-card.protection .category-title { background: var(--gradient-protection); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .category-description { color: rgba(255,255,255,0.8); margin-bottom: 30px; font-size: 1.1em; line-height: 1.6; }
+        .product-count { display: inline-block; padding: 8px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 20px; font-size: 0.9em; color: rgba(255,255,255,0.9); margin-bottom: 20px; }
+        .category-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: auto; font-weight: bold; font-size: 1.1em; transition: gap 0.3s; }
+        .category-card:hover .category-cta { gap: 20px; }
+        .arrow { transition: transform 0.3s; }
+        .category-card:hover .arrow { transform: translateX(10px); }
+        .stats { padding: 80px 20px; background: rgba(15, 35, 90, 0.3); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .stat-item { text-align: center; padding: 30px; background: rgba(255, 255, 255, 0.03); border-radius: 20px; transition: all 0.3s; }
+        .stat-item:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); }
+        .stat-number { font-size: 3em; font-weight: bold; background: var(--gradient-3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .stat-label { color: rgba(255,255,255,0.7); font-size: 1.1em; }
+        footer { padding: 50px 20px 30px; background: rgba(0, 0, 30, 0.35); text-align: center; border-top: 1px solid rgba(102, 126, 234, 0.3); margin-top: 100px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: #92FE9D; }
+        .footer-bottom { padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255,255,255,0.5); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5em; } .categories-grid { grid-template-columns: 1fr; } .category-card { min-height: auto; } }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">AG2R LA MONDIALE</div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
+    <div class="bg-animation"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <header><nav><div class="logo">AG2R LA MONDIALE</div></nav></header>
     <section class="hero">
         <h1>Bienvenue</h1>
         <p>Découvrez nos solutions complètes pour protéger votre santé, faire fructifier votre épargne et assurer votre prévoyance</p>
     </section>
-
-    <!-- Main Categories -->
     <section class="categories">
-        <div class="section-title">
-            <h2>Nos Univers de Protection</h2>
-            <p>Choisissez votre domaine pour découvrir nos solutions adaptées</p>
-        </div>
-
+        <div class="section-title"><h2>Nos Univers de Protection</h2><p>Choisissez votre domaine pour découvrir nos solutions adaptées</p></div>
         <div class="categories-grid">
-            <!-- Santé -->
             <a href="sante.html" class="category-card health">
                 <div class="category-icon">🏥</div>
                 <h3 class="category-title">Santé</h3>
                 <span class="product-count">3 produits disponibles</span>
-                <p class="category-description">
-                    Des solutions complètes pour votre santé et celle de votre famille.
-                    Remboursements optimaux, réseaux de soins partenaires et services innovants
-                    pour prendre soin de vous au quotidien.
-                </p>
-                <div class="category-cta">
-                    <span>Découvrir nos offres santé</span>
-                    <span class="arrow">→</span>
-                </div>
+                <p class="category-description">Des solutions complètes pour votre santé et celle de votre famille. Remboursements optimaux, réseaux de soins partenaires et services innovants pour prendre soin de vous au quotidien.</p>
+                <div class="category-cta"><span>Découvrir nos offres santé</span><span class="arrow">→</span></div>
             </a>
-
-            <!-- Épargne -->
             <a href="epargne.html" class="category-card savings">
                 <div class="category-icon">💰</div>
                 <h3 class="category-title">Épargne</h3>
                 <span class="product-count">3 produits disponibles</span>
-                <p class="category-description">
-                    Faites fructifier votre patrimoine avec nos solutions d'épargne flexibles. 
-                    Des placements sécurisés aux investissements dynamiques, 
-                    nous vous accompagnons dans vos projets.
-                </p>
-                <div class="category-cta">
-                    <span>Explorer nos solutions épargne</span>
-                    <span class="arrow">→</span>
-                </div>
+                <p class="category-description">Faites fructifier votre patrimoine avec nos solutions d'épargne flexibles. Des placements sécurisés aux investissements dynamiques, nous vous accompagnons dans vos projets.</p>
+                <div class="category-cta"><span>Explorer nos solutions épargne</span><span class="arrow">→</span></div>
             </a>
-
-            <!-- Prévoyance -->
             <a href="prevoyance.html" class="category-card protection">
                 <div class="category-icon">🛡️</div>
                 <h3 class="category-title">Prévoyance</h3>
                 <span class="product-count">5 produits disponibles</span>
-                <p class="category-description">
-                    Protégez-vous et vos proches face aux aléas de la vie. 
-                    Garanties accidents, obsèques et perte d'autonomie : 
-                    anticipez sereinement pour préserver votre famille.
-                </p>
-                <div class="category-cta">
-                    <span>Voir nos garanties prévoyance</span>
-                    <span class="arrow">→</span>
-                </div>
+                <p class="category-description">Protégez-vous et vos proches face aux aléas de la vie. Garanties accidents, obsèques et perte d'autonomie : anticipez sereinement pour préserver votre famille.</p>
+                <div class="category-cta"><span>Voir nos garanties prévoyance</span><span class="arrow">→</span></div>
             </a>
         </div>
     </section>
-
-    <!-- Stats Section -->
     <section class="stats">
         <div class="stats-grid">
-            <div class="stat-item">
-                <div class="stat-number">15M+</div>
-                <div class="stat-label">Assurés & bénéficiaires</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">7,3 Mds€</div>
-                <div class="stat-label">Fonds propres du groupe</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">176%</div>
-                <div class="stat-label">Ratio de solvabilité</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">10e</div>
-                <div class="stat-label">Label Excellence consécutif</div>
-            </div>
+            <div class="stat-item"><div class="stat-number">15M+</div><div class="stat-label">Assurés & bénéficiaires</div></div>
+            <div class="stat-item"><div class="stat-number">7,3 Mds€</div><div class="stat-label">Fonds propres du groupe</div></div>
+            <div class="stat-item"><div class="stat-number">176%</div><div class="stat-label">Ratio de solvabilité</div></div>
+            <div class="stat-item"><div class="stat-number">10e</div><div class="stat-label">Label Excellence consécutif</div></div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-                <a href="#">Contact</a>
-                <a href="#">Espace client</a>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 AG2R LA MONDIALE - Tous droits réservés</p>
-            </div>
-        </div>
-    </footer>
-
+    <footer><div class="footer-content"><div class="footer-links"><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a><a href="#">Contact</a><a href="#">Espace client</a></div><div class="footer-bottom"><p>&copy; 2025 AG2R LA MONDIALE - Tous droits réservés</p></div></div></footer>
     <script>
-        // Logo click to home
-        document.querySelector('.logo').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Animate cards on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.category-card, .stat-item').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelector('.logo').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.animation = 'fadeInUp 0.6s ease forwards'; } }); }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+        document.querySelectorAll('.category-card, .stat-item').forEach(el => { observer.observe(el); });
     </script>
+    <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
+    <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});</script>
 </body>
 </html>
