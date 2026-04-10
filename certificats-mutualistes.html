@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <title>Certificats Mutualistes - AG2R La Mondiale</title>
     <style>
         * {
@@ -687,6 +688,31 @@
         .doc-name { font-size: 0.95em; font-weight: 600; line-height: 1.5; flex-grow: 1; }
         .doc-dl { padding: 8px 22px; border-radius: 20px; font-size: 0.85em; font-weight: bold; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: white; }
         .doc-card:hover .doc-dl { background: rgba(255,255,255,0.28); }
+
+        /* Quiz */
+        .quiz-section { padding: 60px 20px; background: rgba(0,0,20,0.2); }
+        .quiz-wrap { max-width: 700px; margin: 0 auto; }
+        .quiz-title { text-align: center; font-size: 2em; margin-bottom: 40px; background: linear-gradient(135deg, #00C9FF, #92FE9D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .quiz-progress { text-align: right; color: rgba(255,255,255,0.5); font-size: 0.9em; margin-bottom: 15px; }
+        .quiz-question { font-size: 1.15em; font-weight: 600; color: white; margin-bottom: 25px; line-height: 1.5; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        @media (max-width: 600px) { .quiz-options { grid-template-columns: 1fr; } }
+        .quiz-opt { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 14px 18px; color: white; cursor: pointer; font-size: 0.95em; transition: all 0.2s; text-align: left; }
+        .quiz-opt:hover:not(:disabled) { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.4); }
+        .quiz-opt.correct { background: rgba(0,200,100,0.2); border-color: #00C864; color: #92FE9D; }
+        .quiz-opt.wrong { background: rgba(255,80,80,0.2); border-color: #FF5050; color: #FF8080; }
+        .quiz-opt:disabled { cursor: default; }
+        .quiz-feedback { min-height: 45px; font-size: 0.92em; line-height: 1.5; padding: 8px 0; }
+        .quiz-next { background: linear-gradient(135deg, #00C9FF, #92FE9D); color: white; border: none; padding: 12px 28px; border-radius: 25px; font-size: 1em; font-weight: bold; cursor: pointer; transition: all 0.3s; display: none; margin-top: 5px; }
+        .quiz-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .quiz-result { text-align: center; padding: 40px 20px; display: none; }
+        .result-score { font-size: 3.5em; font-weight: bold; color: white; margin-bottom: 15px; }
+        .result-label { font-size: 1.1em; color: rgba(255,255,255,0.75); margin-bottom: 30px; }
+        .quiz-restart { background: linear-gradient(135deg, #00C9FF, #92FE9D); color: white; border: none; padding: 14px 32px; border-radius: 25px; font-size: 1em; font-weight: bold; cursor: pointer; transition: all 0.3s; }
+        .quiz-restart:hover { transform: translateY(-2px); }
+        html { scroll-behavior: smooth; }
+        #btn-top { position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); color: white; border: 1px solid rgba(255,255,255,0.3); font-size: 1.4em; cursor: pointer; display: none; align-items: center; justify-content: center; z-index: 998; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s; }
+        #btn-top:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); }
     </style>
 </head>
 <body>
@@ -915,6 +941,25 @@
         </div>
     </section>
 
+    <!-- Quiz de connaissances -->
+    <section class="quiz-section">
+        <div class="quiz-wrap">
+            <h3 class="quiz-title">🎯 Quiz de connaissances</h3>
+            <div id="quiz-container">
+                <div class="quiz-progress">Question <span id="quiz-num">1</span> / 5</div>
+                <p class="quiz-question" id="quiz-q"></p>
+                <div class="quiz-options" id="quiz-opts"></div>
+                <p class="quiz-feedback" id="quiz-fb"></p>
+                <button class="quiz-next" id="quiz-next"></button>
+            </div>
+            <div class="quiz-result" id="quiz-result">
+                <div class="result-score" id="quiz-score"></div>
+                <p class="result-label" id="quiz-label"></p>
+                <button class="quiz-restart" onclick="startQuiz()">🔄 Recommencer</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Documents à télécharger -->
     <section class="docs-section">
         <div class="docs-wrap">
@@ -1137,3 +1182,23 @@
             });
         });
     </script>
+
+    <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
+    <script>
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        const QUIZ=[
+            {q:"Quelle est la valeur nominale d'un Certificat Mutualiste ?",opts:["1 €","5 €","10 €","100 €"],correct:2,expl:"Chaque Certificat Mutualiste a une valeur nominale de 10 €."},
+            {q:"Comment est déterminée la rémunération des Certificats Mutualistes ?",opts:["Elle est fixe à 4 %/an","Elle est indexée sur le CAC 40","Elle est votée chaque année en Assemblée Générale","Elle est garantie par l'État"],correct:2,expl:"La rémunération est variable et décidée chaque année par vote en Assemblée Générale des adhérents."},
+            {q:"Y a-t-il des frais d'entrée pour souscrire des Certificats Mutualistes ?",opts:["Oui, 3 %","Oui, 1,5 %","Non, zéro frais","Oui, selon le montant"],correct:2,expl:"Les Certificats Mutualistes sont sans frais d'entrée — 100 % de votre investissement est placé."},
+            {q:"À qui sont réservés les Certificats Mutualistes ?",opts:["Aux salariés d'AG2R uniquement","Aux adhérents AG2R LA MONDIALE","À tout le monde sans condition","Aux retraités uniquement"],correct:1,expl:"Les Certificats Mutualistes sont réservés aux adhérents AG2R LA MONDIALE."},
+            {q:"Les Certificats Mutualistes sont-ils cotés en Bourse ?",opts:["Oui, cotés en Bourse","Non, ce sont des titres non cotés propres à la mutuelle","Oui, sur un marché obligataire","Oui, sur un marché secondaire"],correct:1,expl:"Les Certificats Mutualistes ne sont pas cotés en Bourse. Ce sont des titres propres à AG2R LA MONDIALE."}
+        ];
+        let qIdx=0,qScore=0;
+        function startQuiz(){qIdx=0;qScore=0;document.getElementById('quiz-container').style.display='block';document.getElementById('quiz-result').style.display='none';showQ();}
+        function showQ(){const d=QUIZ[qIdx];document.getElementById('quiz-num').textContent=qIdx+1;document.getElementById('quiz-q').textContent=d.q;const opts=document.getElementById('quiz-opts');opts.innerHTML='';d.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='quiz-opt';b.textContent=o;b.onclick=()=>answer(i);opts.appendChild(b);});document.getElementById('quiz-fb').textContent='';document.getElementById('quiz-next').style.display='none';}
+        function answer(sel){const d=QUIZ[qIdx];const btns=document.querySelectorAll('.quiz-opt');btns.forEach(b=>b.disabled=true);const fb=document.getElementById('quiz-fb');if(sel===d.correct){btns[sel].classList.add('correct');fb.textContent='✓ Correct !';fb.style.color='#92FE9D';qScore++;}else{btns[sel].classList.add('wrong');btns[d.correct].classList.add('correct');fb.textContent='✗ '+d.expl;fb.style.color='#FF8080';}const nxt=document.getElementById('quiz-next');nxt.style.display='inline-block';nxt.textContent=qIdx<QUIZ.length-1?'Question suivante →':'Voir mon score';nxt.onclick=()=>{qIdx++;qIdx<QUIZ.length?showQ():showResult();};}
+        function showResult(){document.getElementById('quiz-container').style.display='none';const res=document.getElementById('quiz-result');res.style.display='block';document.getElementById('quiz-score').textContent=qScore+'/5';const labels=['À retravailler — relisez la fiche produit.','À retravailler — relisez la fiche produit.','Des lacunes — quelques points clés à revoir.','Bien ! Quelques détails à consolider.','Très bien ! Maîtrise solide du produit.','Parfait ! Vous maîtrisez ce produit à 100 %.'];document.getElementById('quiz-label').textContent=labels[qScore];}
+        startQuiz();
+    </script>
+</body>
+</html>
