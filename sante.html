@@ -97,7 +97,7 @@
     </section>
     <section class="info-section"><div class="info-content"><h3>Parrainez et économisez jusqu'à 120€</h3><p>Programme de parrainage Viasanté : parrainez vos proches et recevez des crédits cadeaux — 30€ pour votre 1er filleul, 40€ pour le 2e, 50€ pour le 3e. Jusqu'à 120€ de crédits cadeaux à utiliser sur un large choix d'enseignes.</p></div></section>
     <footer><div class="footer-content"><div class="footer-bottom"><p>&copy; 2024 AG2R LA MONDIALE - Tous droits réservés</p></div></div></footer>
-    <script>document.querySelector('.logo').addEventListener('click', () => { window.location.href = 'index.html'; }); const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.animation = 'fadeInUp 0.6s ease forwards'; } }); }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }); document.querySelectorAll('.product-card').forEach(el => { observer.observe(el); });</script>
+    <script>document.querySelector('.logo').addEventListener('click', () => { window.location.href = 'index.html'; }); const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.animation = 'fadeInUp 0.6s ease forwards'; observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }); document.querySelectorAll('.product-card').forEach(el => { observer.observe(el); });</script>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});</script>
 </body>

@@ -1058,6 +1058,7 @@
                             entry.target.classList.add('animate');
                         }, Array.from(entry.target.parentNode.children).indexOf(entry.target) * 200);
                     }
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
