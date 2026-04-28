@@ -1035,7 +1035,7 @@
     </script>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>
-        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
         const QUIZ=[
             {q:"À partir de quel jour d'hospitalisation l'indemnité est-elle versée ?",opts:["Dès le 3ème jour","Dès le 2ème jour","Dès le 1er jour","Dès le 5ème jour"],correct:2,expl:"La Garantie Hospitalière Premier Jour verse une indemnité dès le 1er jour, sans franchise."},
             {q:"Combien de niveaux de couverture propose la garantie ?",opts:["2 niveaux","3 niveaux","4 niveaux","6 niveaux"],correct:2,expl:"La garantie propose 4 niveaux d'indemnisation adaptés à vos besoins."},

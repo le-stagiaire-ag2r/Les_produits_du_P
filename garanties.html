@@ -1396,7 +1396,7 @@
     </section>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>
-        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
         const QUIZ=[
             {q:"Combien de formules propose la Garantie Protection Accident ?",opts:["3 formules","4 formules","5 formules","6 formules"],correct:3,expl:"La Garantie Protection Accident propose 6 formules pour tous les profils et budgets."},
             {q:"Que couvre principalement la Garantie Protection Accident ?",opts:["Les maladies professionnelles","Les accidents de la vie courante","L'hospitalisation uniquement","Les accidents du travail"],correct:1,expl:"Cette garantie couvre les accidents de la vie courante — sport, loisirs, domicile, etc."},

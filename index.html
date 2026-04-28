@@ -137,6 +137,6 @@
         document.querySelectorAll('.category-card, .stat-item').forEach(el => { observer.observe(el); });
     </script>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
-    <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});</script>
+    <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});</script>
 </body>
 </html>

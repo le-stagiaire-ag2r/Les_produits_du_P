@@ -99,6 +99,6 @@
     <footer><div class="footer-content"><div class="footer-bottom"><p>&copy; 2024 AG2R LA MONDIALE - Tous droits réservés</p></div></div></footer>
     <script>document.querySelector('.logo').addEventListener('click', () => { window.location.href = 'index.html'; }); const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.animation = 'fadeInUp 0.6s ease forwards'; observer.unobserve(entry.target); } }); }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }); document.querySelectorAll('.product-card').forEach(el => { observer.observe(el); });</script>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
-    <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});</script>
+    <script>window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});</script>
 </body>
 </html>

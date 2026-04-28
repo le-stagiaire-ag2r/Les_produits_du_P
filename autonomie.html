@@ -1111,7 +1111,7 @@
     </script>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>
-        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
         const QUIZ=[
             {q:"Quel événement déclenche le versement des prestations de l'assurance autonomie ?",opts:["Une hospitalisation longue durée","Un accident corporel","La perte d'autonomie / la dépendance","L'atteinte d'un certain âge"],correct:2,expl:"Les prestations sont déclenchées par la reconnaissance d'un état de perte d'autonomie, évalué selon des critères précis (grille AGGIR)."},
             {q:"Sous quelle forme sont généralement versées les prestations autonomie ?",opts:["Un capital unique","Une rente mensuelle","Des bons de réduction","Un remboursement de frais sur facture"],correct:1,expl:"L'assurance autonomie verse une rente mensuelle pour aider à financer la prise en charge au quotidien."},
