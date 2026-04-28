@@ -1098,7 +1098,7 @@
     </script>
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>
-        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
         const QUIZ=[
             {q:"Quelle est la différence entre Prima Volontés et Prima Capital Obsèques+ ?",opts:["Aucune différence","Prima Volontés prévoit les modalités des obsèques, Prima Capital verse un capital aux bénéficiaires","Prima Capital est plus cher","Prima Volontés est réservée aux personnes âgées"],correct:1,expl:"Prima Volontés organise les obsèques selon vos souhaits. Prima Capital assure le financement via un capital transmis."},
             {q:"Que permet d'organiser un contrat Prima Volontés ?",opts:["Uniquement le financement","Les volontés précises : rites, type d'obsèques, prestataire...","L'assurance vie des proches","Le versement d'une rente mensuelle"],correct:1,expl:"Prima Volontés permet de consigner toutes ses volontés funéraires (rites, lieu, cercueil, etc.)."},

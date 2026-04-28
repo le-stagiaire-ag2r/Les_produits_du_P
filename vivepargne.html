@@ -960,7 +960,7 @@
 
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>
-        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
         const QUIZ=[
             {q:"Quel est le premier versement minimum pour ouvrir un contrat Vivépargne II ?",opts:["500 €","1 000 €","1 500 €","5 000 €"],correct:2,expl:"Le premier versement minimum est de 1 500 € pour ouvrir un contrat Vivépargne II."},
             {q:"Vivépargne II est-il un contrat monosupport en euros ?",opts:["Oui, uniquement fonds euros","Non, c'est un contrat multisupport (fonds euros + unités de compte)","C'est un plan d'épargne retraite","C'est un compte d'épargne bancaire réglementé"],correct:1,expl:"Vivépargne II est un contrat multisupport : il associe la sécurité du fonds euros à des unités de compte."},

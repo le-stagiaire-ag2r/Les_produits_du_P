@@ -1004,7 +1004,7 @@
             } else {
                 header.classList.remove('header-scrolled');
             }
-        });
+        }, {passive: true});
 
         // Scroll to top button
         const scrollTopBtn = document.getElementById('scrollTop');
@@ -1014,7 +1014,7 @@
             } else {
                 scrollTopBtn.classList.remove('visible');
             }
-        });
+        }, {passive: true});
 
         scrollTopBtn.addEventListener('click', function() {
             window.scrollTo({
@@ -1128,14 +1128,12 @@
         }
 
         // Add subtle parallax effect to background elements
+        const bgAnimationEl = document.querySelector('.bg-animation');
         window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * -0.5;
-            const bgAnimation = document.querySelector('.bg-animation');
-            if (bgAnimation) {
-                bgAnimation.style.transform = `translateY(${rate}px)`;
+            if (bgAnimationEl) {
+                bgAnimationEl.style.transform = `translateY(${window.scrollY * -0.5}px)`;
             }
-        });
+        }, {passive: true});
 
         // Enhanced typing effect for hero title (optional)
         function typeWriter(element, text, speed = 100) {
@@ -1174,7 +1172,7 @@
 
     <button id="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Haut de page">↑</button>
     <script>
-        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';});
+        window.addEventListener('scroll',()=>{const b=document.getElementById('btn-top');b.style.display=window.scrollY>400?'flex':'none';},{passive:true});
         const QUIZ=[
             {q:"Quelle est la valeur nominale d'un Certificat Mutualiste ?",opts:["1 €","5 €","10 €","100 €"],correct:2,expl:"Chaque Certificat Mutualiste a une valeur nominale de 10 €."},
             {q:"Comment est déterminée la rémunération des Certificats Mutualistes ?",opts:["Elle est fixe à 4 %/an","Elle est indexée sur le CAC 40","Elle est votée chaque année en Assemblée Générale","Elle est garantie par l'État"],correct:2,expl:"La rémunération est variable et décidée chaque année par vote en Assemblée Générale des adhérents."},
